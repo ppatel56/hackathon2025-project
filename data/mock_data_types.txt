@@ -1,0 +1,43 @@
+AWS Glue Mock CloudWatch Logs (CSV)
+Common Glue Errors
+IAM Permission Issues:
+
+Missing permissions for Glue to access S3, Redshift, or other resources.
+
+PySpark Errors:
+
+Syntax errors, null pointer exceptions, or DataFrame transformation issues.
+
+Resource Limits:
+
+Insufficient DPUs, memory, or timeout issues.
+
+Data Source Issues:
+
+Schema mismatches, invalid data formats, or missing files.
+
+Networking Issues:
+
+VPC configuration errors or transient network failures.
+
+AWS Lambda Mock CloudWatch Logs (CSV)
+Common Lambda Errors
+IAM Permission Issues:
+
+Missing permissions for Lambda to invoke Glue, access S3, or call other services.
+
+Timeout Errors:
+
+Lambda execution time exceeding the configured timeout.
+
+Invocation Errors:
+
+Issues invoking other AWS services (e.g., Glue, SNS, SQS).
+
+Resource Limits:
+
+Memory or concurrency limits exceeded.
+
+Code Errors:
+
+Unhandled exceptions, syntax errors, or runtime issues.

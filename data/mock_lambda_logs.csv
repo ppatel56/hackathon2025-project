@@ -1,0 +1,11 @@
+timestamp,service,log_level,message,request_id,error_code,details
+2023-10-01T12:00:00Z,Lambda,ERROR,Function 'sales-data-trigger' failed due to insufficient IAM permissions.,abc123xyz,AccessDenied,"Ensure the Lambda role has glue:StartJobRun permission."
+2023-10-01T12:05:00Z,Lambda,ERROR,Function 'feedback-api-trigger' timed out after 3 seconds.,def456uvw,TimeoutError,"Increase the timeout setting for the Lambda function."
+2023-10-01T12:10:00Z,Lambda,ERROR,Function 'sales-data-trigger' failed to invoke Glue job.,ghi789rst,InvocationError,"Check IAM permissions for Lambda to invoke Glue."
+2023-10-01T12:15:00Z,Lambda,ERROR,Function 'feedback-api-trigger' exceeded memory limit.,jkl012mno,MemoryExceeded,"Increase the memory allocation for the Lambda function."
+2023-10-01T12:20:00Z,Lambda,ERROR,Function 'sales-data-trigger' encountered an unhandled exception.,nop345pqr,UnhandledException,"Review the Lambda function code for errors."
+2023-10-01T12:25:00Z,Lambda,WARN,Function 'feedback-api-trigger' received empty response from API.,stu678vwx,EmptyResponse,"Check the API endpoint and request parameters."
+2023-10-01T12:30:00Z,Lambda,ERROR,Function 'sales-data-trigger' failed due to a syntax error in the code.,xyz901abc,SyntaxError,"Fix the syntax error in the Lambda function code."
+2023-10-01T12:35:00Z,Lambda,ERROR,Function 'feedback-api-trigger' exceeded concurrency limit.,bcd234efg,ConcurrencyLimitExceeded,"Increase the concurrency limit for the Lambda function."
+2023-10-01T12:40:00Z,Lambda,INFO,Function 'sales-data-trigger' successfully triggered Glue job.,fgh567hij,NA,"Glue job 'sales-etl-job' started."
+2023-10-01T12:45:00Z,Lambda,ERROR,Function 'feedback-api-trigger' failed due to a missing environment variable.,ijk890klm,MissingEnvVar,"Ensure the required environment variables are set."
