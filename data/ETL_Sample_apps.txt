@@ -1,0 +1,236 @@
+Application 1: Daily Sales Data Pipeline
+1. Overview
+This pipeline processes daily sales data from an e-commerce platform, transforms it, and loads it into Amazon Redshift for reporting and analytics.
+
+1.1 Purpose
+Extract raw sales data from an S3 bucket.
+
+Transform and clean the data.
+
+Load the processed data into Amazon Redshift.
+
+1.2 Scope
+Data Source: CSV files stored in S3.
+
+Data Destination: Amazon Redshift.
+
+Tools: AWS Glue, AWS Lambda, Amazon S3, Amazon Redshift.
+
+2. Pipeline Architecture
+2.1 Workflow
+Data Ingestion:
+
+CSV files containing daily sales data are uploaded to an S3 bucket (s3://raw-sales-data).
+
+Trigger:
+
+An S3 event notification triggers an AWS Lambda function (sales-data-trigger).
+
+Data Transformation:
+
+The Lambda function invokes an AWS Glue job (sales-etl-job) to process the data.
+
+The Glue job cleans, transforms, and enriches the data (e.g., calculates total sales, removes duplicates).
+
+Data Loading:
+
+The processed data is stored in another S3 bucket (s3://processed-sales-data) and loaded into Amazon Redshift.
+
+Orchestration:
+
+AWS Step Functions manage the workflow if additional steps are required.
+
+2.2 Diagram
+Copy
+S3 (Raw Data) ? Lambda (Trigger) ? Glue (Transformation) ? S3 (Processed Data) ? Redshift
+3. AWS Services Used
+AWS Glue: For ETL transformations.
+
+AWS Lambda: To trigger the Glue job on new file uploads.
+
+Amazon S3: For storing raw and processed data.
+
+Amazon Redshift: For analytics and reporting.
+
+Amazon CloudWatch: For monitoring and logging.
+
+4. Implementation Details
+4.1 Lambda Function (sales-data-trigger)
+Trigger: S3 event notification for s3://raw-sales-data.
+
+Action: Invokes the AWS Glue job sales-etl-job.
+
+Code:
+
+python
+Copy
+import boto3
+
+def lambda_handler(event, context):
+    glue_client = boto3.client('glue')
+    response = glue_client.start_job_run(JobName='sales-etl-job')
+    return response
+4.2 AWS Glue Job (sales-etl-job)
+Input: CSV files from s3://raw-sales-data.
+
+Transformations:
+
+Remove null values.
+
+Calculate total sales.
+
+Convert date formats.
+
+Output: Parquet files stored in s3://processed-sales-data.
+
+Code:
+
+python
+Copy
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+
+# Read raw data
+raw_data = glueContext.create_dynamic_frame.from_catalog(database="sales_db", table_name="raw_sales")
+
+# Apply transformations
+cleaned_data = DropNullFields.apply(frame=raw_data)
+transformed_data = Map.apply(frame=cleaned_data, f=calculate_total_sales)
+
+# Write processed data
+glueContext.write_dynamic_frame.from_catalog(frame=transformed_data, database="sales_db", table_name="processed_sales")
+4.3 Redshift Integration
+Use the COPY command to load processed data from S3 into Redshift.
+
+Example:
+
+sql
+Copy
+COPY sales_table
+FROM 's3://processed-sales-data/'
+IAM_ROLE 'arn:aws:iam::123456789012:role/RedshiftRole'
+FORMAT AS PARQUET;
+5. Monitoring and Logging
+Use CloudWatch to monitor Lambda invocations and Glue job runs.
+
+Set up alarms for job failures or data quality issues.
+
+Application 2: Real-Time Customer Feedback Pipeline
+1. Overview
+This pipeline processes real-time customer feedback data from an API, transforms it, and stores it in an S3 data lake.
+
+1.1 Purpose
+Extract customer feedback data from an API.
+
+Transform and enrich the data.
+
+Store the processed data in an S3 data lake.
+
+1.2 Scope
+Data Source: REST API.
+
+Data Destination: Amazon S3.
+
+Tools: AWS Lambda, AWS Glue, Amazon S3.
+
+2. Pipeline Architecture
+2.1 Workflow
+Data Ingestion:
+
+A REST API provides real-time customer feedback data.
+
+Trigger:
+
+An AWS Lambda function (feedback-api-trigger) polls the API every 5 minutes.
+
+Data Transformation:
+
+The Lambda function invokes an AWS Glue job (feedback-etl-job) to process the data.
+
+The Glue job enriches the data (e.g., sentiment analysis, categorization).
+
+Data Storage:
+
+The processed data is stored in an S3 bucket (s3://customer-feedback-data).
+
+2.2 Diagram
+Copy
+API ? Lambda (Trigger) ? Glue (Transformation) ? S3 (Data Lake)
+3. AWS Services Used
+AWS Lambda: To poll the API and trigger the Glue job.
+
+AWS Glue: For ETL transformations.
+
+Amazon S3: For storing processed data.
+
+Amazon CloudWatch: For monitoring and logging.
+
+4. Implementation Details
+4.1 Lambda Function (feedback-api-trigger)
+Trigger: Scheduled every 5 minutes using CloudWatch Events.
+
+Action: Polls the API and invokes the Glue job feedback-etl-job.
+
+Code:
+
+python
+Copy
+import boto3
+import requests
+
+def lambda_handler(event, context):
+    response = requests.get('https://api.example.com/feedback')
+    data = response.json()
+    glue_client = boto3.client('glue')
+    glue_client.start_job_run(JobName='feedback-etl-job', Arguments={'--data': data})
+4.2 AWS Glue Job (feedback-etl-job)
+Input: JSON data from the API.
+
+Transformations:
+
+Perform sentiment analysis using a pre-trained model.
+
+Categorize feedback into predefined categories.
+
+Output: JSON files stored in s3://customer-feedback-data.
+
+Code:
+
+python
+Copy
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+
+args = getResolvedOptions(sys.argv, ['JOB_NAME', '--data'])
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+
+# Process data
+feedback_data = spark.read.json(args['--data'])
+enriched_data = perform_sentiment_analysis(feedback_data)
+
+# Write to S3
+enriched_data.write.json('s3://customer-feedback-data/')
+5. Monitoring and Logging
+Use CloudWatch to monitor Lambda invocations and Glue job runs.
+
+Set up alarms for API failures or data quality issues.
+
+6. Best Practices for Both Applications
+Error Handling: Use DLQs for failed messages and retry mechanisms.
+
+Cost Optimization: Use Glue job bookmarks to process only new data.
+
+Security: Encrypt data at rest and in transit using AWS KMS.
