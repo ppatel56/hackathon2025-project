@@ -1,6 +1,15 @@
 boto3
 pandas
 numpy
-langgraph
 langsmith 
 langchain_anthropic
+langchain_community
+tiktoken 
+langchain-openai 
+langchain-cohere 
+langchainhub 
+langchain 
+langgraph  
+tavily-python
+chromadb 
+langchain_aws
