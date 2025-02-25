@@ -1,0 +1,6 @@
+boto3
+pandas
+numpy
+langgraph
+langsmith 
+langchain_anthropic
