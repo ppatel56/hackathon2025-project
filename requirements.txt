@@ -11,5 +11,5 @@ langchainhub
 langchain 
 langgraph  
 tavily-python
-chromadb 
 langchain_aws
+chromadb 
