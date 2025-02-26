@@ -12,4 +12,5 @@ langchain
 langgraph  
 tavily-python
 langchain_aws
-chromadb 
+faiss-cpu
+bs4
