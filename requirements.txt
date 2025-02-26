@@ -4,4 +4,10 @@ numpy
 langgraph
 langsmith 
 langchain_anthropic
+sqllite
 sqlite3
+streamlit
+requests
+base64
+sqlite
+csv
