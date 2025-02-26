@@ -1,18 +1,24 @@
 import streamlit as st
-import ollama
-from openai import OpenAI
-import requests
+import boto3
 from bs4 import BeautifulSoup
-import langgraph as lg
 from langchain_community.document_loaders import AsyncChromiumLoader
 from langchain_community.document_transformers import BeautifulSoupTransformer
 from duckduckgo_search import DDGS
 import re
+import json
 
-Add  api key
-client = OpenAI(
-    api_key=
-)
+bedrock_client = boto3.client("bedrock-runtime", region_name = "us-east-1")
+
+def call_bedrock(model_id, prompt):
+    response = bedrock_client.invoke_model(
+        ModelId = model_id,
+        Body = json.dumps({"prompt": prompt, "max_tokens":1000, "temperature":0}),
+        ContentType = 'application/jason',
+        Accept ='application/json'
+    )
+    response_body = json.loads(response['Body'].read().decode('utf-8'))
+    return response_body.get("outputs", [{}])[0].get("text", "No response from Bedrock")
+
 
 # performs DuckDuckGo search, urls are extracted and status checked
 # 
@@ -51,27 +57,10 @@ def truncate(text):
     return truncated
 
 # create prompt for ollama
-def create_prompt_ollama(llm_query, search_results):
-    content_start = (
-        "Answer the question using only the context below.\n\n"+
-        "Context:\n"
-    )
-
-    content_end = (
-        f"\n\nQuestion: {llm_query}\nAnswer:"
-    )
-
-    content = (
-        content_start + "\n\n---\n\n".join(search_results) + 
-        content_end
-    )
-
-    prompt = [{'role': 'user', 'content': content }]
-
-    return prompt
 
 # create prompt for OpenAI
-def create_prompt_openai(llm_request, search_results):
+def create_prompt_bedrock(llm_query, search_results):
+
     prompt_start = (
         "Answer the question using only the context below.\n\n"+
         "Context:\n"
@@ -89,10 +78,7 @@ def create_prompt_openai(llm_request, search_results):
     return prompt
 
 # use ollama with llama3 foundation model
-def create_completion_ollama(prompt):
-    completion = ollama.chat(model='llama3', messages=prompt)
 
-    return completion['message']['content']
 
 # use openai's foundation models
 def create_completion_openai(prompt):
@@ -109,7 +95,7 @@ def create_completion_openai(prompt):
 
     return res.choices[0].text
 
-# ui
+
 with st.form("prompt_form"):
     result =""
     prompt = ""
@@ -119,9 +105,9 @@ with st.form("prompt_form"):
     if submitted:
         search_results = ddg_search(search_query)
         # prompt = create_prompt_ollama(llm_query,search_results)
-        prompt = create_prompt_openai(llm_query,search_results)
+        prompt = create_prompt_bedrock(llm_query,search_results)
         # result = create_completion_ollama(prompt)
-        result = create_completion_openai(prompt)
+        result = call_bedrock(model_id = "anthropic.claude-v2", prompt = prompt)
     
     e = st.expander("LLM prompt created:")
     e.write(prompt)
