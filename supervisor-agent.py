@@ -2,10 +2,17 @@ from typing import Literal
 from typing import TypedDict
 
 from langchain_anthropic import ChatAnthropic
-from langgraph.graph import MessagesState, END
+from langgraph.graph import MessagesState, StateGraph, START, END
 from langgraph.types import Command
+from langchain_core.messages import HumanMessage
+
+#from langgraph.prebuilt import create_react_agent # Change for crag agent func
+from agents import create_crag_agent
 
 from dotenv import load_dotenv
+
+import sys
+import os
 
 # These are the different AI Agents that the supervisor can pick from
 members = ['SQL Query Agent', 'CRAG Agent', 'Code Retriever Agent']
