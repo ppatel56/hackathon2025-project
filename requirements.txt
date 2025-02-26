@@ -4,3 +4,4 @@ numpy
 langgraph
 langsmith 
 langchain_anthropic
+sqlite3
