@@ -1,13 +1,27 @@
 import streamlit as st
 import requests
+import base64
 
 # Function to tie the streamlit UI with the Agent
-def call_langgraph_chatbot(error_description, time_of_occurrence=None):
+def call_langgraph_chatbot(error_description, time_of_occurrence=None, severity_level=None, uploaded_file=None):
     # Prepare the payload for the chatbot
     payload = {
         "error_description": error_description,
-        "time_of_occurrence": time_of_occurrence
+        "time_of_occurrence": time_of_occurrence,
+        "severity_level": severity_level,
+        "uploaded_file": None
     }
+    
+    # Handle the uploaded file
+    if uploaded_file is not None:
+        if uploaded_file.type == "text/plain":
+            # Read text file
+            file_content = uploaded_file.read().decode("utf-8")
+            payload["uploaded_file"] = file_content
+        elif uploaded_file.type in ["image/png", "image/jpeg"]:
+            # Read image file and encode in base64
+            file_content = base64.b64encode(uploaded_file.read()).decode("utf-8")
+            payload["uploaded_file"] = file_content
     
     # Replace with your LangGraph chatbot API endpoint
     chatbot_url = "https://your-langgraph-chatbot-api.com/chat"
@@ -40,7 +54,7 @@ if "chat_history" not in st.session_state:
 if st.button("Get Help"):
     if error_description:
         with st.spinner("Analyzing your issue..."):
-            response = call_langgraph_chatbot(error_description, time_of_occurrence)
+            response = call_langgraph_chatbot(error_description, time_of_occurrence, severity_level, uploaded_file)
             st.session_state.chat_history.append({"user": error_description, "bot": response})
         
         st.write("### Chat History:")
