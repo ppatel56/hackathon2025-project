@@ -1,6 +1,27 @@
 import streamlit as st
 import requests
 
+# Function to tie the streamlit UI with the Agent
+def call_langgraph_chatbot(error_description, time_of_occurrence=None):
+    # Prepare the payload for the chatbot
+    payload = {
+        "error_description": error_description,
+        "time_of_occurrence": time_of_occurrence
+    }
+    
+    # Replace with your LangGraph chatbot API endpoint
+    chatbot_url = "https://your-langgraph-chatbot-api.com/chat"
+    
+    try:
+        # Send the request to the chatbot
+        response = requests.post(chatbot_url, json=payload)
+        response.raise_for_status()  # Raise an error for bad status codes
+        
+        # Return the chatbot's response
+        return response.json().get("response", "No response from chatbot.")
+    except requests.exceptions.RequestException as e:
+        return f"Error communicating with the chatbot: {e}"
+
 # Title and welcome message
 st.title("AI Production Support Chatbot")
 st.write("Welcome! Describe your issue below to get help.")
@@ -39,3 +60,4 @@ if feedback:
 if st.button("Reset Form"):
     st.session_state.chat_history = []
     st.experimental_rerun()
+
