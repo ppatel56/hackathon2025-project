@@ -1,0 +1,26 @@
+AWS Glue ETL Job Documentation: Historical Stock Prices
+
+Overview
+
+This AWS Glue ETL job processes third-party historical stock price data, transforming and storing it for downstream analytics and reporting. The job ensures schema consistency, manages historical partitions, and provides efficient access to the latest stock price data.
+
+Data Sources
+External Team Data: The data is from an external team who provide the CSV files of stock prices for certain companies
+
+Format: CSV files
+
+Schema: Includes fields such as ticker, date, open_price, close_price, high, low, volume.
+
+Data Flow
+Ingestion: The job reads historical stock price data from the third-party source.
+Transformation: Converts raw data into a structured format. Cast raw data type fields to correct data types for analytics.
+Ensures schema consistency.
+
+AWS Glue Job Details
+Job Type: PySpark-based Glue ETL Job
+Triggers: Can be scheduled or event-driven.
+IAM Roles: Ensures least-privilege access to required resources.
+Data Catalog: Metadata is stored in the AWS Glue Data Catalog.
+
+Error Handling & Logging
+Logs are stored in Amazon CloudWatch for monitoring.

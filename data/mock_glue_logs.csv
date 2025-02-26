@@ -1,0 +1,11 @@
+timestamp,service,log_level,message,request_id,error_code,details
+2023-10-01T12:00:00Z,Glue,ERROR,Glue job 'sales-etl-job' failed due to insufficient IAM permissions.,abc123xyz,AccessDenied,"Ensure the Glue role has s3:GetObject and s3:ListBucket permissions."
+2023-10-01T12:05:00Z,Glue,ERROR,PySpark error in Glue job 'feedback-etl-job': NullPointerException.,def456uvw,PySparkError,"Check for null values in the input data."
+2023-10-01T12:10:00Z,Glue,WARN,Glue job 'sales-etl-job' skipped some files due to schema mismatch.,ghi789rst,SchemaMismatch,"Verify the schema of input files in S3."
+2023-10-01T12:15:00Z,Glue,ERROR,Glue job 'feedback-etl-job' failed due to insufficient DPUs.,jkl012mno,ResourceLimitExceeded,"Increase the number of DPUs allocated to the job."
+2023-10-01T12:20:00Z,Glue,ERROR,Glue job 'sales-etl-job' failed due to invalid JSON format in input data.,nop345pqr,InvalidInputData,"Validate the JSON structure of input files."
+2023-10-01T12:25:00Z,Glue,ERROR,Glue job 'feedback-etl-job' failed due to VPC configuration issues.,stu678vwx,NetworkError,"Check VPC settings and subnet configurations."
+2023-10-01T12:30:00Z,Glue,ERROR,Glue job 'sales-etl-job' failed due to a PySpark syntax error.,xyz901abc,PySparkError,"Review the PySpark script for syntax issues."
+2023-10-01T12:35:00Z,Glue,WARN,Glue job 'feedback-etl-job' encountered a memory overflow.,bcd234efg,MemoryError,"Increase the worker type to a larger instance."
+2023-10-01T12:40:00Z,Glue,INFO,Glue job 'sales-etl-job' completed successfully.,fgh567hij,NA,"Processed 10,000 records in 5 minutes."
+2023-10-01T12:45:00Z,Glue,ERROR,Glue job 'feedback-etl-job' failed due to a missing S3 bucket.,ijk890klm,FileNotFound,"Ensure the S3 bucket and prefix exist."
