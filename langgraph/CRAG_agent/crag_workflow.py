@@ -2,29 +2,53 @@ from langchain_aws import ChatBedrock
 from langchain_aws import BedrockEmbeddings
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import WebBaseLoader
+from langchain.document_loaders import TextLoader
 from langchain_community.vectorstores import FAISS
 import boto3
 from aws_creds import *
+import os
+
+from langgraph.graph import END, StateGraph, START
+
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+
+from pydantic import BaseModel, Field
+
+from langchain import hub
+from langchain_core.output_parsers import StrOutputParser
+
+from langchain.schema import Document
+
+import requests
+from langchain_community.tools import DuckDuckGoSearchResults
+from langchain_community.utilities import DuckDuckGoSearchAPIWrapper
+
+from typing import List
+
+from typing_extensions import TypedDict
+
 
 ## ---------------------------------------------------------------------------------------
 def create_index():
 
-    urls = [
-    "https://lilianweng.github.io/posts/2023-06-23-agent/",
-    "https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/",
-    "https://lilianweng.github.io/posts/2023-10-25-adv-attack-llm/",
-    ]
+    # Specify the directory containing your local files
+    local_dir = "D:/PhotonUser/My Files/Home Folder/hackathon2025-project/data"
 
+    # List all files in the directory
+    file_paths = [os.path.join(local_dir, f) for f in os.listdir(local_dir) if f.endswith('.txt')]
 
-    docs = [WebBaseLoader(url).load() for url in urls]
-    docs_list = [item for sublist in docs for item in sublist]
-    # print(docs_list)
+    # Load documents from local files
+    docs = []
+    for file_path in file_paths:
+        loader = TextLoader(file_path)
+        docs.extend(loader.load())
+        # print(docs_list)
 
     text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
         chunk_size=250, chunk_overlap=0
     )
-    doc_splits = text_splitter.split_documents(docs_list)
+    doc_splits = text_splitter.split_documents(docs)
 
     bedrock = boto3.client(
         'bedrock-runtime',
@@ -58,12 +82,6 @@ retriever = create_index()
 ## ---------------------------------------------------------------------------------------
 ## Define Grader
 
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI
-
-from pydantic import BaseModel, Field
-
-# Data model
 class GradeDocuments(BaseModel):
     """Binary score for relevance check on retrieved documents."""
 
@@ -80,6 +98,7 @@ llm = ChatBedrock(
     aws_session_token = AWS_SESSION_TOKEN,
     region_name = 'us-east-1'
 )
+
 structured_llm_grader = llm.with_structured_output(GradeDocuments)
 
 # Prompt
@@ -94,15 +113,13 @@ grade_prompt = ChatPromptTemplate.from_messages(
 )
 
 retrieval_grader = grade_prompt | structured_llm_grader
-question = "agent memory"
-docs = retriever.invoke(question)
-doc_txt = docs[1].page_content
-print(retrieval_grader.invoke({"question": question, "document": doc_txt}))
+# question = "agent memory"
+# docs = retriever.invoke(question)
+# doc_txt = docs[1].page_content
+# print(retrieval_grader.invoke({"question": question, "document": doc_txt}))
 
 ## ---------------------------------------------------------------------------------------
 ## RAG Chain
-from langchain import hub
-from langchain_core.output_parsers import StrOutputParser
 
 # Prompt
 prompt = hub.pull("rlm/rag-prompt")
@@ -116,8 +133,8 @@ def format_docs(docs):
 rag_chain = prompt | llm | StrOutputParser()
 
 # Run
-generation = rag_chain.invoke({"context": docs, "question": question})
-print(generation)
+# generation = rag_chain.invoke({"context": docs, "question": question})
+# print(generation)
 
 ## ---------------------------------------------------------------------------------------
 ### Question Re-writer
@@ -135,14 +152,10 @@ re_write_prompt = ChatPromptTemplate.from_messages(
 )
 
 question_rewriter = re_write_prompt | llm | StrOutputParser()
-rewritten = question_rewriter.invoke({"question": question})
-print(rewritten)
+# rewritten = question_rewriter.invoke({"question": question})
+# print(rewritten)
 
 ## ---------------------------------------------------------------------------------------
-import requests
-from langchain_community.tools import DuckDuckGoSearchResults
-from langchain_community.utilities import DuckDuckGoSearchAPIWrapper
-
 wrapper = DuckDuckGoSearchAPIWrapper(
     region="wt-wt",  # Worldwide results
     time="m",        # Past month
@@ -153,9 +166,6 @@ web_search_tool = DuckDuckGoSearchResults(api_wrapper=wrapper, output_format='li
 
 ## ---------------------------------------------------------------------------------------
 #Create CRAG Graph
-from typing import List
-
-from typing_extensions import TypedDict
 
 
 class GraphState(TypedDict):
@@ -173,8 +183,7 @@ class GraphState(TypedDict):
     generation: str
     web_search: str
     documents: List[str]
-
-from langchain.schema import Document
+    links: List[str]
 
 
 def retrieve(state):
@@ -247,6 +256,7 @@ def grade_documents(state):
     return {"documents": filtered_docs, "question": question, "web_search": web_search}
 
 
+
 def transform_query(state):
     """
     Transform the query to produce a better question.
@@ -286,10 +296,11 @@ def web_search(state):
     docs = web_search_tool.invoke({"query": question})
     print(f"docs:\n{docs}")
     web_results = "\n".join([d["snippet"] for d in docs])
+    web_links = [d["link"] for d in docs]
     web_results = Document(page_content=web_results)
     documents.append(web_results)
 
-    return {"documents": documents, "question": question}
+    return {"documents": documents, "question": question, "links" : web_links}
 
 
 ### Edges
@@ -325,47 +336,58 @@ def decide_to_generate(state):
 
 ## ---------------------------------------------------------------------------------------
 #Compile Graph
-from langgraph.graph import END, StateGraph, START
 
-workflow = StateGraph(GraphState)
+def create_crag_agent():
 
-# Define the nodes
-workflow.add_node("retrieve", retrieve)  # retrieve
-workflow.add_node("grade_documents", grade_documents)  # grade documents
-workflow.add_node("generate", generate)  # generatae
-workflow.add_node("transform_query", transform_query)  # transform_query
-workflow.add_node("web_search_node", web_search)  # web search
+    workflow = StateGraph(GraphState)
 
-# Build graph
-workflow.add_edge(START, "retrieve")
-workflow.add_edge("retrieve", "grade_documents")
-workflow.add_conditional_edges(
-    "grade_documents",
-    decide_to_generate,
-    {
-        "transform_query": "transform_query",
-        "generate": "generate",
-    },
-)
-workflow.add_edge("transform_query", "web_search_node")
-workflow.add_edge("web_search_node", "generate")
-workflow.add_edge("generate", END)
+    # Define the nodes
+    workflow.add_node("retrieve", retrieve)  # retrieve
+    workflow.add_node("grade_documents", grade_documents)  # grade documents
+    workflow.add_node("generate", generate)  # generatae
+    workflow.add_node("transform_query", transform_query)  # transform_query
+    workflow.add_node("web_search_node", web_search)  # web search
 
-# Compile
-app = workflow.compile()
+    # Build graph
+    workflow.add_edge(START, "retrieve")
+    workflow.add_edge("retrieve", "grade_documents")
+    workflow.add_conditional_edges(
+        "grade_documents",
+        decide_to_generate,
+        {
+            "transform_query": "transform_query",
+            "generate": "generate",
+        },
+    )
+    workflow.add_edge("transform_query", "web_search_node")
+    workflow.add_edge("web_search_node", "generate")
+    workflow.add_edge("generate", END)
 
-#use the graph
-from pprint import pprint
+    # Compile
+    app = workflow.compile()
 
-# Run
-inputs = {"question": "What are the types of agent memory?"}
-for output in app.stream(inputs):
-    for key, value in output.items():
-        # Node
-        pprint(f"Node '{key}':")
-        # Optional: print full state at each node
-        # pprint.pprint(value["keys"], indent=2, width=80, depth=None)
-    pprint("\n---\n")
+    return app
 
-# Final generation
-pprint(value["generation"])
+if __name__ == "__main__":
+    # Your code here
+
+    #use the graph
+    from pprint import pprint
+
+    # Run
+    inputs = {"question": "where is the data from for the historical stock price data pipeline that my team supports?"}
+    app = create_crag_agent()
+    for output in app.stream(inputs):
+        for key, value in output.items():
+            # Node
+            pprint(f"Node '{key}':")
+            # Optional: print full state at each node
+            # pprint.pprint(value["keys"], indent=2, width=80, depth=None)
+        pprint("\n---\n")
+
+    # Final generation
+    pprint(value["generation"])
+
+    # result = app.invoke(inputs)
+    # pprint(f"Response: {result["generation"]}")
+    # pprint(f"Links: {result["links"]}")
