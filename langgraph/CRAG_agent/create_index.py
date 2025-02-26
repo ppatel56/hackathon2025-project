@@ -14,36 +14,41 @@ urls = [
     "https://lilianweng.github.io/posts/2023-10-25-adv-attack-llm/",
 ]
 
-docs = [WebBaseLoader(url).load() for url in urls]
-docs_list = [item for sublist in docs for item in sublist]
-print(docs_list)
+def create_index():
 
-text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-    chunk_size=250, chunk_overlap=0
-)
-doc_splits = text_splitter.split_documents(docs_list)
 
-bedrock = boto3.client(
-    'bedrock-runtime',
-    aws_access_key_id = AWS_ACCESS_KEY_ID,
-    aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-    aws_session_token = AWS_SESSION_TOKEN,
-    region_name = 'us-east-1'
+    docs = [WebBaseLoader(url).load() for url in urls]
+    docs_list = [item for sublist in docs for item in sublist]
+    # print(docs_list)
+
+    text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+        chunk_size=250, chunk_overlap=0
+    )
+    doc_splits = text_splitter.split_documents(docs_list)
+
+    bedrock = boto3.client(
+        'bedrock-runtime',
+        aws_access_key_id = AWS_ACCESS_KEY_ID,
+        aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
+        aws_session_token = AWS_SESSION_TOKEN,
+        region_name = 'us-east-1'
+        )
+
+    embeddings = BedrockEmbeddings(
+        region_name="us-east-1",
+        client = bedrock,
+        model_id='amazon.titan-embed-text-v1'
     )
 
-embeddings = BedrockEmbeddings(
-    region_name="us-east-1",
-    client = bedrock,
-    model_id='amazon.titan-embed-text-v1'
-)
+    # Add to vectorDB
+    vectorstore = FAISS.from_documents(
+        documents=doc_splits,
+        embedding=embeddings,
+    )
 
-# Add to vectorDB
-vectorstore = FAISS.from_documents(
-    documents=doc_splits,
-    embedding=embeddings,
-)
+    # Save the index to disk
+    # vectorstore.save_local('internal_team_docs_index')
 
-# Save the index to disk
-vectorstore.save_local(folder_path="faiss_index",index_name='internal_team_docs')
+    retriever = vectorstore.as_retriever()
 
-retriever = vectorstore.as_retriever()
+    return retriever

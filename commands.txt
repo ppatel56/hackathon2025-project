@@ -1,0 +1,15 @@
+'c:/Program Files/Python312/python' -m venv $HOME/Documents/saulvenv
+
+d:/PhotonUser/Documents/saulvenv/Scripts/activate
+. d:/PhotonUser/Documents/saulvenv/Scripts/activate
+
+pip config --user set global.cache-dir %USERPROFILE%\Downloads\python
+
+/c/ProgramData/UserDataFolders/S-1-5-21-1162821190-1770220716-3372880830-1009/My Files/Temporary Files
+
+pip install -r d:/PhotonUser/My\ Files/Home\ Folder/hackathon2025-project/requirements.txt
+
+python d:/PhotonUser/My\ Files/Home\ Folder/hackathon2025-project/langgraph/CRAG_Agent.py
+python d:/PhotonUser/My\ Files/Home\ Folder/hackathon2025-project/langgraph/test_bedrock.py
+
+git clone https://github.com/ppatel56/hackathon2025-project.git

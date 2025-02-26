@@ -14,3 +14,4 @@ tavily-python
 langchain_aws
 faiss-cpu
 bs4
+duckduckgo-search
