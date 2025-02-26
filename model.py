@@ -77,25 +77,6 @@ def create_prompt_bedrock(llm_query, search_results):
 
     return prompt
 
-# use ollama with llama3 foundation model
-
-
-# use openai's foundation models
-def create_completion_openai(prompt):
-    res = client.completions.create(
-        model="gpt-3.5-turbo-instruct",
-        prompt=prompt,
-        temperature=0,
-        max_tokens=1000,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=None
-    )
-
-    return res.choices[0].text
-
-
 with st.form("prompt_form"):
     result =""
     prompt = ""
