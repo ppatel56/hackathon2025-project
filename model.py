@@ -21,7 +21,7 @@ def call_bedrock(model_id, prompt):
 
 
 # performs DuckDuckGo search, urls are extracted and status checked
-# 
+
 def ddg_search(query):
     results = DDGS().text(query, max_results=5)
     urls = []
@@ -77,17 +77,22 @@ def create_prompt_bedrock(llm_query, search_results):
 
     return prompt
 
+
 with st.form("prompt_form"):
     result =""
     prompt = ""
     search_query = st.text_area("DuckDuckGo search:", None)
+    website_urls = st.text_area("Enter website URLs (comma separated):, None")
     llm_query = st.text_area("LLM prompt:", None)
     submitted = st.form_submit_button("Send")
     if submitted:
-        search_results = ddg_search(search_query)
-        # prompt = create_prompt_ollama(llm_query,search_results)
-        prompt = create_prompt_bedrock(llm_query,search_results)
-        # result = create_completion_ollama(prompt)
+        if website_urls:
+            urls = website_urls.split(",")
+            docs = get_page(urls)
+        else:
+            docs = ddg_search(search_quer)
+        
+        prompt = create_prompt_bedrock(llm_query,docs)
         result = call_bedrock(model_id = "anthropic.claude-v2", prompt = prompt)
     
     e = st.expander("LLM prompt created:")
