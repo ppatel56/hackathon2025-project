@@ -4,6 +4,7 @@ from langgraph.prebuilt import create_react_agent
 from typing import Literal
 from langgraph.types import Command
 ## Added additonal imports for create_crag_agent, sql_query_agent, and code_retriever_agent ##
+from glue_scripts.codeagent import create_code_retriever_agent
 
 # Define the state
 class State:
@@ -12,7 +13,7 @@ class State:
 # Create your custom agents
 sql_query_agent = create_sql_query_agent()
 crag_agent = create_crag_agent()
-code_retrieval_agent = create_code_retrieval_agent()
+code_retrieval_agent = create_code_retriever_agent()
 supervisor_node = supervisor_node()
 
 # Define the supervisor node

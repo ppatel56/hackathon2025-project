@@ -26,15 +26,15 @@ def return_code_tool(
     data = f.read()
     return data
 
-code_agent = create_react_agent(
-    llm, tools=[return_code_tool]
-)
-print(code_agent)
+def create_code_retriever_agent():
+    code_agent = create_react_agent(
+        llm, tools=[return_code_tool]
+    )
 
-result = code_agent.invoke(
-    {"messages": [{"role": "user", "content": "Hackathon-Test-Glue-1.py"}]}
-)
-print(result)
+    result = code_agent.invoke(
+        {"messages": [{"role": "user", "content": "Hackathon-Test-Glue-1.py"}]}
+    )
+    return code_agent
 
 # def code_node(state: State) -> Command[Literal["supervisor"]]:
 #     result = code_agent.invoke(state)
