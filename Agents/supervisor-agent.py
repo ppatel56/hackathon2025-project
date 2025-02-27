@@ -24,17 +24,43 @@ import os
 
 # These are the different AI Agents that the supervisor can pick from
 members = ['Query_Internal_Docs_and_web', 'Query_Cloudwatch', 'Retrieve_App_Code']
+# members = ['Query_Cloudwatch'] #, 'Query_Cloudwatch', 'Retrieve_App_Code']
 
 # Decides when the work is completed
 options = members + ['FINISH']
 
-sup_system_prompt = (
-    "You are a supervisor tasked with managing a conversation between the"
-    f" following workers: {members}. Given the following user request and messages,"
-    " respond with the worker to act next. Each worker will perform a"
-    " task and respond with their results and status. When there is enough context to answer the user question accurately,"
-    " respond with FINISH."
-)
+sup_system_prompt = f"""
+You are an AWS Development Supervisor, tasked with managing a conversation between the following workers: {options}.
+
+Given the following user request, respond with the worker to act next. Respond with FINISH when the question has been answered.
+
+If the user specifically asks you where to search for the information, assign the specific worker to answer the questions.
+1. If the user's question topic relates to cloudwatch logs or errors, assign the Query_Cloudwatch worker.
+2. If the user's question topic relates to code, assign the Retrieve_App_Code worker.
+3. If the user's question topic relates to internal documentation or web search, assign the Query_Internal_Docs_and_web worker.
+4. Otherwise, assign the Query_Internal_Docs_and_web worker.
+
+The selected worker will perform a task and respond with their results and status. Again, you must select one worker to respond.
+
+If the question made by the user does not need an answer from your workers, respond with FINISH.
+
+Once the question has been answered by either you or your workers, finish by responding with FINISH.
+
+Examples:
+1. User: How many cloudwatch logs do you have access to?
+   Worker: Answer: There are 10 cloudwatch logs in the Glue logs and 10 in the Lambda logs, totaling 20 logs.
+   Response: FINISH
+
+2. User: Provide the code for one of our glue jobs.
+   Worker: Here is the code for the glue job: ...
+   Response: FINISH
+
+3. User: What error did glue job 'X' encounter on 2023-01-01? Also what part of the code caused the error?
+    Query_Cloudwatch worker: The glue job 'X' encountered error 'Y' on 2023-01-01.
+    Retrieve_App_Code worker: This is the code for glue job 'X'
+    Response: FINISH
+    
+"""
 
 crag_q_system_prompt = (
     "You are a professional RAG question generator. Given the following user request, respond"
@@ -42,11 +68,18 @@ crag_q_system_prompt = (
     " that will help the user. When finished, respond with FINISH."
 )
 
+synthesizer_prompt = """
+You are a professional response synthesizer. Given the following messages, respond with a synthesized response. 
+Ignore any messages that are not relevant to the original user question when synthesizing your response.
+Respond only with the synthesized response.
+"""
+
 
 class Router(TypedDict):
     """Worker to route to next. If no workers needed, route to FINISH."""
 
     next: Literal[*options]
+    question_answer: str
 
 class CRagQuestion(BaseModel):
     """Question to ask the CRAG agent."""
@@ -60,21 +93,28 @@ class State(MessagesState):
     next: str
     documents: List[str]
     links: List[str]
+    final_response: str
     
 
 def supervisor_node(state: State) -> Command[Literal[*members, "__end__"]]:
     print("-----------------")
     print("supervisor_node")
-    print(state)
     messages = [
         {"role": "system", "content": sup_system_prompt},
     ] + state["messages"]
     response = llm.with_structured_output(Router).invoke(messages)
+    print(response)
     goto = response["next"]
+    final_response = ""
     if goto == "FINISH":
         goto = END
+        messages = [
+            {"role": "system", "content": synthesizer_prompt},
+            ] + state["messages"]
+        print("Messages for final_response: ", messages)
+        final_response = llm.invoke(messages).content
 
-    return Command(goto=goto, update={"next": goto, "messages": state["messages"][-1]})
+    return Command(goto=goto, update={"next": goto, "final_response": final_response})
 
 def construct_super_graph():
     #define agents (subgraphs)
@@ -99,7 +139,7 @@ def construct_super_graph():
         
         return Command(
             update={
-                "messages": state['messages'] + [
+                "messages": [
                     HumanMessage(content=result["generation"], name="crag")
                 ],
                 "documents": updated_documents,
@@ -114,7 +154,7 @@ def construct_super_graph():
         result = sql_ag.invoke(state)
         return Command(
             update={
-                "messages": state['messages'] + [
+                "messages": [
                     HumanMessage(content=result["messages"][-1].content, name="sql")
                 ]
             },
@@ -127,7 +167,7 @@ def construct_super_graph():
         result = code_age.invoke(state)
         return Command(
             update={
-                "messages": state['messages'] + [
+                "messages": [
                     HumanMessage(content=result["messages"][-1].content, name="coder")
                 ]
             },
@@ -152,19 +192,25 @@ if __name__ == "__main__":
     #     {"messages": [{"role": "user", "content": "How many cloudwatch logs do we have?"}]}
     # ):
     #     print(event)
+
+    test_prompt_1 = "How many cloudwatch logs do we have?"
+    test_prompt_2 = "Give me the code for glue job Hackathon-Test-Glue-1.py"
+    test_prompt_3 = "What is the pipeline architecture for facebook?"
+    test_prompt_3 = "Compare facebooks pipeline architecture to my team's pipeline architecture please."
     
     messages = graph.invoke(
-        {"messages": [{"role": "user", "content": "How many cloudwatch logs do we have in our team?"}]}
+        {"messages": [{"role": "user", "content": test_prompt_3}]}
     )
     print("===")
-    print(messages['messages'][-1].content)
+    print(messages['final_response'])
+    #if links and documents keys are present, print them
+    if "documents" in messages:
+        print("===")
+        print(messages['documents'])
+    if "links" in messages:
+        print("===")
+        print(messages['links'])
     print("===")
-    print(messages['documents'])
-    print("===")
-    print(messages['links'])
-    print("===")
-
-
 
 
 
