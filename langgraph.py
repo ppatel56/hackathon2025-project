@@ -1,3 +1,6 @@
+import sys
+sys.path.append(r'C:\ProgramData\UserDataFolders\S-1-5-21-1112896083-289523540-421599246-1009\Documents\hackathon2025-project\env\Lib\site-packages')
+
 from langchain_core.messages import HumanMessage
 from langgraph.graph import StateGraph, START, END
 from langgraph.prebuilt import create_react_agent
@@ -15,15 +18,15 @@ crag_agent = create_crag_agent()
 code_retrieval_agent = create_code_retrieval_agent()
 supervisor_node = supervisor_node()
 
-# Define the supervisor node
 def supervisor_node(state: State) -> Command[Literal["sql_query_agent", "crag_agent", "code_retrieval_agent", "END"]]:
     """Supervisor decides which agent to invoke next."""
-    # Add your logic to decide which agent to invoke
-    if "SQL" in state.messages[-1].content:
+    last_message = state.messages[-1].content
+
+    if "SQL" in last_message:
         return Command(goto="sql_query_agent")
-    elif "CRAG" in state.messages[-1].content:
+    elif "CRAG" in last_message:
         return Command(goto="crag_agent")
-    elif "code" in state.messages[-1].content:
+    elif "code" in last_message:
         return Command(goto="code_retrieval_agent")
     else:
         return Command(goto="END")
