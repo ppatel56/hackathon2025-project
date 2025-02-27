@@ -15,10 +15,6 @@ langchain_aws
 faiss-cpu
 bs4
 duckduckgo-search
-sqllite
-sqlite3
 streamlit
 requests
-base64
-sqlite
-csv
+langchain_openai

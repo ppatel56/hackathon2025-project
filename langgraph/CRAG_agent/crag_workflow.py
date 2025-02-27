@@ -1,12 +1,7 @@
 from langchain_aws import ChatBedrock
-from langchain_aws import BedrockEmbeddings
-
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.document_loaders import TextLoader
-from langchain_community.vectorstores import FAISS
-import boto3
-from aws_creds import *
 import os
+
+from create_vector_store import read_index
 
 from langgraph.graph import END, StateGraph, START
 
@@ -20,64 +15,14 @@ from langchain_core.output_parsers import StrOutputParser
 
 from langchain.schema import Document
 
-import requests
-from langchain_community.tools import DuckDuckGoSearchResults
-from langchain_community.utilities import DuckDuckGoSearchAPIWrapper
+from langchain_community.tools.tavily_search import TavilySearchResults
 
 from typing import List
 
 from typing_extensions import TypedDict
 
-
-## ---------------------------------------------------------------------------------------
-def create_index():
-
-    # Specify the directory containing your local files
-    local_dir = "D:/PhotonUser/My Files/Home Folder/hackathon2025-project/data"
-
-    # List all files in the directory
-    file_paths = [os.path.join(local_dir, f) for f in os.listdir(local_dir) if f.endswith('.txt')]
-
-    # Load documents from local files
-    docs = []
-    for file_path in file_paths:
-        loader = TextLoader(file_path)
-        docs.extend(loader.load())
-        # print(docs_list)
-
-    text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
-        chunk_size=250, chunk_overlap=0
-    )
-    doc_splits = text_splitter.split_documents(docs)
-
-    bedrock = boto3.client(
-        'bedrock-runtime',
-        aws_access_key_id = AWS_ACCESS_KEY_ID,
-        aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-        aws_session_token = AWS_SESSION_TOKEN,
-        region_name = 'us-east-1'
-        )
-
-    embeddings = BedrockEmbeddings(
-        region_name="us-east-1",
-        client = bedrock,
-        model_id='amazon.titan-embed-text-v1'
-    )
-
-    # Add to vectorDB
-    vectorstore = FAISS.from_documents(
-        documents=doc_splits,
-        embedding=embeddings,
-    )
-
-    # Save the index to disk
-    # vectorstore.save_local('internal_team_docs_index')
-
-    retriever = vectorstore.as_retriever()
-
-    return retriever
-
-retriever = create_index()
+##Retrieve index
+retriever = read_index()
 
 ## ---------------------------------------------------------------------------------------
 ## Define Grader
@@ -90,14 +35,7 @@ class GradeDocuments(BaseModel):
     )
 
 # LLM with structured output
-llm = ChatBedrock(
-    model_id='amazon.nova-pro-v1:0',  # or another available model
-    model_kwargs=dict(temperature=0),
-    aws_access_key_id = AWS_ACCESS_KEY_ID,
-    aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-    aws_session_token = AWS_SESSION_TOKEN,
-    region_name = 'us-east-1'
-)
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
 
 structured_llm_grader = llm.with_structured_output(GradeDocuments)
 
@@ -113,16 +51,13 @@ grade_prompt = ChatPromptTemplate.from_messages(
 )
 
 retrieval_grader = grade_prompt | structured_llm_grader
-# question = "agent memory"
-# docs = retriever.invoke(question)
-# doc_txt = docs[1].page_content
-# print(retrieval_grader.invoke({"question": question, "document": doc_txt}))
 
 ## ---------------------------------------------------------------------------------------
 ## RAG Chain
 
 # Prompt
-prompt = hub.pull("rlm/rag-prompt")
+# prompt = hub.pull("rlm/rag-prompt")
+prompt = hub.pull("svercoutere/rag-prompt-long")
 
 # Post-processing
 def format_docs(docs):
@@ -156,13 +91,7 @@ question_rewriter = re_write_prompt | llm | StrOutputParser()
 # print(rewritten)
 
 ## ---------------------------------------------------------------------------------------
-wrapper = DuckDuckGoSearchAPIWrapper(
-    region="wt-wt",  # Worldwide results
-    time="m",        # Past month
-    max_results=5    # Number of results to return
-)
-
-web_search_tool = DuckDuckGoSearchResults(api_wrapper=wrapper, output_format='list')
+web_search_tool = TavilySearchResults(k=3)
 
 ## ---------------------------------------------------------------------------------------
 #Create CRAG Graph
@@ -295,9 +224,11 @@ def web_search(state):
     # Web search
     docs = web_search_tool.invoke({"query": question})
     print(f"docs:\n{docs}")
-    web_results = "\n".join([d["snippet"] for d in docs])
-    web_links = [d["link"] for d in docs]
-    web_results = Document(page_content=web_results)
+    web_results = "\n".join([d["content"] for d in docs])
+    web_links = [d["url"] for d in docs]
+    web_results = Document(
+        page_content=web_results,
+        metadata={"tag": "external_web_search", "title": "Web Search Results"})
     documents.append(web_results)
 
     return {"documents": documents, "question": question, "links" : web_links}
@@ -377,17 +308,19 @@ if __name__ == "__main__":
     # Run
     inputs = {"question": "where is the data from for the historical stock price data pipeline that my team supports?"}
     app = create_crag_agent()
-    for output in app.stream(inputs):
-        for key, value in output.items():
-            # Node
-            pprint(f"Node '{key}':")
-            # Optional: print full state at each node
-            # pprint.pprint(value["keys"], indent=2, width=80, depth=None)
-        pprint("\n---\n")
+    # for output in app.stream(inputs):
+    #     for key, value in output.items():
+    #         # Node
+    #         pprint(f"Node '{key}':")
+    #         # Optional: print full state at each node
+    #         # pprint.pprint(value["keys"], indent=2, width=80, depth=None)
+    #     pprint("\n---\n")
 
     # Final generation
-    pprint(value["generation"])
+    # pprint(value["generation"])
 
-    # result = app.invoke(inputs)
-    # pprint(f"Response: {result["generation"]}")
-    # pprint(f"Links: {result["links"]}")
+    result = app.invoke(inputs)
+    pprint(f"Question: {result['question']}")
+    pprint(f"Response: {result["generation"]}")
+    pprint(f"Links: {result["links"]}")
+    pprint(f"Documents: {result['documents']}")
