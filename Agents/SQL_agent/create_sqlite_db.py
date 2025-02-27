@@ -1,8 +1,9 @@
 import sqlite3
 import csv
+import os
 
 # Define the SQLite database file
-db_file = "aws_logs.db"
+db_file = os.path.join(os.path.dirname(__file__), '..','aws_logs.db')
 
 # Connect to the SQLite database (or create it if it doesn't exist)
 conn = sqlite3.connect(db_file)
@@ -46,10 +47,11 @@ def insert_csv_data(csv_file, table_name):
             ''', row)
 
 # Insert data from mock_glue_logs.csv into the glue_logs table
-insert_csv_data("../data/mock_glue_logs.csv", "glue_logs")
+local_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
+insert_csv_data(f"{local_dir}/mock_glue_logs.csv", "glue_logs")
 
 # Insert data from mock_lambda_logs.csv into the lambda_logs table
-insert_csv_data("../data/mock_lambda_logs.csv", "lambda_logs")
+insert_csv_data(f"{local_dir}/mock_lambda_logs.csv", "lambda_logs")
 
 # Commit the changes and close the connection
 conn.commit()

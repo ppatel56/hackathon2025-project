@@ -5,6 +5,13 @@ from langchain_anthropic import ChatAnthropic
 from langgraph.graph import MessagesState, StateGraph, START, END
 from langgraph.types import Command
 from langchain_core.messages import HumanMessage
+from langchain_openai import ChatOpenAI
+from CRAG_agent import crag_workflow
+from SQL_agent import sql_agent
+from Code_Retrieve_Agent import codeagent
+from typing_extensions import TypedDict
+from langgraph.graph.message import AnyMessage, add_messages
+from typing import Annotated, Literal
 
 #from langgraph.prebuilt import create_react_agent # Change for crag agent func
 from agents import create_crag_agent
@@ -33,19 +40,16 @@ class Router(TypedDict):
 
     next: Literal[*options]
 
-llm = ChatAnthropic(
-    model='amazon.nova-pro-v1:0',  # or another available model
-    model_kwargs=dict(temperature=0),
-    aws_access_key_id = AWS_ACCESS_KEY_ID,
-    aws_secret_access_key = AWS_SECRET_ACCESS_KEY,
-    aws_session_token = AWS_SESSION_TOKEN,
-    region_name = 'us-east-1'
-)
+llm = ChatOpenAI(model="gpt-4o", temperature=0)
 
 class State(MessagesState):
     next: str
+    messages: Annotated[list[AnyMessage], add_messages]
 
 def supervisor_node(state: State) -> Command[Literal[*members, "__end__"]]:
+    print("-----------------")
+    print("supervisor_node")
+    print(state)
     messages = [
         {"role": "system", "content": system_prompt},
     ] + state["messages"]
@@ -54,7 +58,24 @@ def supervisor_node(state: State) -> Command[Literal[*members, "__end__"]]:
     if goto == "FINISH":
         goto = END
 
-    return Command(goto=goto, update={"next": goto})
+    return Command(goto=goto, update={"next": goto, "messages": state["messages"][-1]})
+
+def construct_super_graph():
+    #define agents (subgraphs)
+    crag_ag = crag_workflow.create_crag_agent()
+    sql_ag = sql_agent.create_sql_agent()
+    code_age = codeagent.create_code_agent()
+
+    def crag_node(state: State) -> Command[Literal[ "supervisor"]]:
+        result = crag_ag.invoke({"question":state["messages"][-1].content})
+        return Command(
+            update={
+                "messages": [
+                    HumanMessage(content=result["messages"][-1].content, name="crag")
+                ]
+            },
+            goto="supervisor",
+        )
 
 
 
