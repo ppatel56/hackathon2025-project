@@ -1,0 +1,290 @@
+timestamp,message
+1740517746071,"Preparing ...
+"
+1740517746353,"Tue Feb 25 21:09:06 UTC 2025
+"
+1740517746366,/etc/alternatives/jre/bin/java --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.math=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED -XX:+IgnoreUnrecognizedVMOptions --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED --add-opens=java.base/java.util.regex=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/jdk.internal=ALL-UNNAMED --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/jdk.internal.reflect=ALL-UNNAMED --add-opens=java.sql/java.sql=ALL-UNNAMED 
+1740517746366,'"--add-opens=java.base/jdk.internal.util=ALL-UNNAMED --add-opens=java.base/jdk.internal.util.random=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED -Djavax.net.ssl.trustStore=/opt/amazon/certs/InternalAndExternalAndAWSTrustStore.jks -Djavax.net.ssl.trustStoreType=JKS -Djavax.net.ssl.trustStorePassword=amazon -DRDS_ROOT_CERT_PATH=/opt/amazon/certs/rds-combined-ca-bundle.pem -DREDSHIFT_ROOT_CERT_PATH=/opt/amazon/certs/redshift-ssl-ca-cert.pem -DRDS_TRUSTSTORE_URL=file:/opt/amazon/certs/InternalAndExternalAndAWSTrustStore.jks -cp /usr/share/aws/aws-glue-shuffle/*:/usr/share/aws/emr-glue-bootstrap/*:/usr/lib/spark/jars/*:/usr/lib/spark/conf:/usr/share/aws/aws-java-sdk-v2/*:/usr/share/aws/*:/usr/share/aws/hmclient/lib/aws-glue-datacatalog-spark-client.jar:/usr/share/aws/hmclient/lib/*:/usr/share/aws/iceberg/lib/*:/usr/share/aws/re"
+1740517746366,dshift/jdbc/*:/usr/share/aws/redshift/spark-redshift/lib/*:/usr/share/aws/glue-connectors/lib/*:/usr/share/aws/glue-pii-dependencies/lib/*:/usr/share/aws/datazone-openlineage-spark/lib/*:/lib/*::/usr/lib/hadoop-lzo/lib/*:/usr/share/aws/aws-java-sdk/*:/usr/share/aws/emr/emrfs/conf:/usr/share/aws/emr/emrfs/lib/*:/usr/share/aws/emr/emrfs/auxlib/*:/usr/share/aws/emr/ddb/lib/emr-ddb-hadoop.jar:/usr/share/aws/emr/goodies/lib/emr-hadoop-goodies.jar:/usr/share/aws/emr/cloudwatch-sink/lib/*:/usr/share/aws/emr/security/conf:/usr/share/aws/emr/security/lib/*:/usr/lib/hadoop/*:/etc/hadoop/conf:/usr/share/java/Hive-JSON-Serde/* -Dlog4j2.configurationFile=/etc/spark/conf.dist/log4j2.properties com.amazonaws.services.glue.GlueBootstrap --conf spark.dynamicAllocation.enabled=true --conf spark.shuffle.service.enabled=true --conf spark.dynamicAllocation.minExecutors=1 --conf spark.dynamicAllocation.maxExecutors=9 --conf spark.executor.memory=20g --conf spark.driver.memory=20g --conf spark.network.timeout=600   --enable-glue-da
+1740517746367,"tacatalog true --glue-di-packages-correlation-ids 20250221-214853_,20250221-214853_,6294489919,6294489919 --job-bookmark-option job-bookmark-disable --TempDir s3://aws-glue-assets-842675997893-us-east-1/temporary/ --internal-lib-urls https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/aws-glue-dataplane-python/java17/5.0.349/4nC4m1-AWSGlueDataplanePython-5.0.349.py.zip?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaH"
+1740517746367,"mVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=807aa1fe5a03593dbdfa4238cc9368900b1d7c001f4b718fb13ede0ac2118948,https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/aws-glue-di-libs/java17/5.0.349/UcyzHl-aws-glue-di-package-5.0.349.jar?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1c"
+1740517746367,"p9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=4d1fd40b17f1f9f99debc88c331bf6ed8521592985017cb364507cc36409033f,https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/AwsGlueMLLibsPython/java17/5.0.243/HGDoA1-AwsGlueMLLibs.py.zip?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5"
+1740517746367,"V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=6e7a1c4295659c36975665f32e622195072b77b235ba735f84919f99309026f2,https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/AwsGlueMLLibs/java17/5.0.243/1ZSjlv-AwsGlueMLLibs.jar?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIk"
+1740517746367,TFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=023d63d
+1740517746367,"1742d50435b476fc5d43c81a77c61f105cec666fa99040efd49598efb  --JOB_ID j_e58ff65a81575f83b459040776a566fcc9d4f784c53b7f5d1c3db88b038a7684 --enable-metrics true --spark-event-logs-path s3://aws-glue-assets-842675997893-us-east-1/sparkHistoryLogs/ --enable-job-insights true  --JOB_RUN_ID jr_a7dec253b648886eab79e70fdec05a08531c460a58b98017e5887d45c57fce15 --enable-observability-metrics true --enable-continuous-cloudwatch-log true --scriptLocation s3://gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py  --job-language python --tenant-internal glue --enable-auto-scaling true --JOB_NAME Hackathon-Test-Glue-1
+"
+1740517747388,"openjdk version ""17.0.13"" 2024-10-15 LTS
+"
+1740517747389,"OpenJDK Runtime Environment Corretto-17.0.13.11.1 (build 17.0.13+11-LTS)
+"
+1740517747389,"OpenJDK 64-Bit Server VM Corretto-17.0.13.11.1 (build 17.0.13+11-LTS, mixed mode, sharing)
+"
+1740517753937,"25/02/25 21:09:13 INFO GlueBootstrap: Glue Bootstrapping...
+"
+1740517753942,"25/02/25 21:09:13 INFO GlueBootstrap: Glue Bootstrapping the driver...
+"
+1740517753942,"25/02/25 21:09:13 INFO GlueBootstrap: Creating work directories...
+"
+1740517754013,"25/02/25 21:09:14 INFO GlueBootstrap: creating /tmp/glue-job-11474106834566810302/jars
+"
+1740517754014,"25/02/25 21:09:14 INFO GlueBootstrap: creating /tmp/glue-job-11474106834566810302/extra-py-files
+"
+1740517754014,"25/02/25 21:09:14 INFO GlueBootstrap: creating /tmp/glue-job-11474106834566810302/extra-files
+"
+1740517754014,"25/02/25 21:09:14 INFO GlueBootstrap: creating /tmp/glue-job-11474106834566810302/extra-jars
+"
+1740517754014,"25/02/25 21:09:14 INFO GlueBootstrap: creating /tmp/glue-job-11474106834566810302/python
+"
+1740517754014,"25/02/25 21:09:14 INFO GlueBootstrap: Processing Glue and User libs
+"
+1740517754030,"25/02/25 21:09:14 INFO GlueBootstrap: Downloading Glue libs...
+"
+1740517754209,"25/02/25 21:09:14 WARN VersionInfoUtils: The AWS SDK for Java 1.x entered maintenance mode starting July 31, 2024 and will reach end of support on December 31, 2025. For more information, see https://aws.amazon.com/blogs/developer/the-aws-sdk-for-java-1-x-is-in-maintenance-mode-effective-july-31-2024/
+You can print where on the file system the AWS SDK for Java 1.x core runtime is located by setting the AWS_JAVA_V1_PRINT_LOCATION environment variable or aws.java.v1.printLocation system property to 'true'.
+This message can be disabled by setting the AWS_JAVA_V1_DISABLE_DEPRECATION_ANNOUNCEMENT environment variable or aws.java.v1.disableDeprecationAnnouncement system property to 'true'.
+The AWS SDK for Java 1.x is being used here:
+at java.base/java.lang.Thread.getStackTrace(Thread.java:1619)
+at glue.shaded.com.amazonaws.util.VersionInfoUtils.printDeprecationAnnouncement(VersionInfoUtils.java:81)
+at glue.shaded.com.amazonaws.util.VersionInfoUtils.<clinit>(VersionInfoUtils.java:59)
+at glue.shaded.com.amazonaws.int"
+1740517754210,"ernal.EC2ResourceFetcher.<clinit>(EC2ResourceFetcher.java:44)
+at glue.shaded.com.amazonaws.auth.InstanceMetadataServiceCredentialsFetcher.<init>(InstanceMetadataServiceCredentialsFetcher.java:38)
+at glue.shaded.com.amazonaws.auth.InstanceProfileCredentialsProvider.<init>(InstanceProfileCredentialsProvider.java:111)
+at glue.shaded.com.amazonaws.auth.InstanceProfileCredentialsProvider.<init>(InstanceProfileCredentialsProvider.java:91)
+at glue.shaded.com.amazonaws.auth.InstanceProfileCredentialsProvider.<init>(InstanceProfileCredentialsProvider.java:75)
+at glue.shaded.com.amazonaws.auth.InstanceProfileCredentialsProvider.<clinit>(InstanceProfileCredentialsProvider.java:58)
+at glue.shaded.com.amazonaws.auth.EC2ContainerCredentialsProviderWrapper.initializeProvider(EC2ContainerCredentialsProviderWrapper.java:66)
+at glue.shaded.com.amazonaws.auth.EC2ContainerCredentialsProviderWrapper.<init>(EC2ContainerCredentialsProviderWrapper.java:55)
+at glue.shaded.com.amazonaws.auth.DefaultAWSCredentialsProviderChain.<init>(D"
+1740517754210,"efaultAWSCredentialsProviderChain.java:60)
+at glue.shaded.com.amazonaws.auth.DefaultAWSCredentialsProviderChain.<clinit>(DefaultAWSCredentialsProviderChain.java:54)
+at glue.shaded.com.amazonaws.services.s3.AmazonS3ClientBuilder.standard(AmazonS3ClientBuilder.java:46)
+at glue.shaded.com.amazonaws.services.s3.AmazonS3Client.builder(AmazonS3Client.java:737)
+at com.amazonaws.services.glue.GlueLibsDownloader$Builder.getS3Client(GlueLibsDownloader.java:213)
+at com.amazonaws.services.glue.GlueLibsDownloader$Builder.build(GlueLibsDownloader.java:205)
+at com.amazonaws.services.glue.GlueBootstrap.downloadGlueLibs(GlueBootstrap.java:343)
+at com.amazonaws.services.glue.GlueBootstrap.lambda$setUpGlueAndUserLibs$1(GlueBootstrap.java:102)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run("
+1740517754210,"Thread.java:840)
+"
+1740517754784,"25/02/25 21:09:14 INFO GlueLibsDownloader: The current region us-east-1
+"
+1740517755325,"25/02/25 21:09:15 INFO GlueLibsDownloader: The current region us-east-1
+"
+1740517755331,25/02/25 21:09:15 INFO GlueBootstrap: files to download {https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/AwsGlueMLLibs/java17/5.0.243/1ZSjlv-AwsGlueMLLibs.jar?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250
+1740517755332,"225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=023d63d1742d50435b476fc5d43c81a77c61f105cec666fa99040efd49598efb=/tmp/glue-job-11474106834566810302/jars, https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/aws-glue-di-libs/java17/5.0.349/UcyzHl-aws-glue-di-package-5.0.349.jar?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpg"
+1740517755332,"lKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=4d1fd40b17f1f9f99debc88c331bf6ed8521592985017cb364507cc36409033f=/tmp/glue-job-11474106834566810302/jars, https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/aws-glue-dataplane-python/java17/5.0.349/4nC4m1-AWSGlueDataplanePython-5.0.349.py.zip?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdL"
+1740517755332,"wPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=807aa1fe5a03593dbdfa4238cc9368900b1d7c001f4b718fb13ede0ac2118948=/tmp/glue-job-11474106834566810302/python, https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/AwsGlueMLLibsPython/java17/5.0.243/HGDoA1-AwsGlueMLLibs.py.zip?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ"
+1740517755332,"4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=6e7a1c4295659c36975665f32e622195072b77b235ba735f84919f99309026f2=/tmp/glue-job-11474106834566810302/python}
+"
+1740517755343,25/02/25 21:09:15 INFO GlueLibsDownloader: Preparing for download https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/AwsGlueMLLibs/java17/5.0.243/1ZSjlv-AwsGlueMLLibs.jar?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-D
+1740517755343,"ate=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=023d63d1742d50435b476fc5d43c81a77c61f105cec666fa99040efd49598efb
+"
+1740517755345,"25/02/25 21:09:15 INFO GlueLibsDownloader: Starting downloading URL to /tmp/glue-job-11474106834566810302/jars/1ZSjlv-AwsGlueMLLibs.jar using S3 endpoint
+"
+1740517755346,25/02/25 21:09:15 INFO GlueLibsDownloader: Preparing for download https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/aws-glue-di-libs/java17/5.0.349/UcyzHl-aws-glue-di-package-5.0.349.jar?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HM
+1740517755346,"AC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=4d1fd40b17f1f9f99debc88c331bf6ed8521592985017cb364507cc36409033f
+"
+1740517755346,"25/02/25 21:09:15 INFO GlueLibsDownloader: Starting downloading URL to /tmp/glue-job-11474106834566810302/jars/UcyzHl-aws-glue-di-package-5.0.349.jar using S3 endpoint
+"
+1740517755348,25/02/25 21:09:15 INFO GlueLibsDownloader: Preparing for download https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/aws-glue-dataplane-python/java17/5.0.349/4nC4m1-AWSGlueDataplanePython-5.0.349.py.zip?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Al
+1740517755348,"gorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=807aa1fe5a03593dbdfa4238cc9368900b1d7c001f4b718fb13ede0ac2118948
+"
+1740517755349,"25/02/25 21:09:15 INFO GlueLibsDownloader: Starting downloading URL to /tmp/glue-job-11474106834566810302/python/4nC4m1-AWSGlueDataplanePython-5.0.349.py.zip using S3 endpoint
+"
+1740517755371,25/02/25 21:09:15 INFO GlueLibsDownloader: Preparing for download https://prod-us-east-1-package-distribution-artifacts-bucket.s3.amazonaws.com/003/Glue5.0/AwsGlueMLLibsPython/java17/5.0.243/HGDoA1-AwsGlueMLLibs.py.zip?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBYaCXVzLWVhc3QtMSJHMEUCIBBLYz%2B5tYhCavIhQmxki9%2B0ks2nfQ2qw%2BPCIkTFNTE2AiEAqPJZ9VbJCqa8iIJosd2mT0h7n9TOqo8dhGFuCiHVPQ4qlwIIThAAGgwzMzk3MTI4NjU3OTQiDB8%2FjzRdMI9ix2GMXSr0AfxsBPF3ctl5E84QYSd7XRjCKdFlGxQitZDQwMwrn5oItFmg4%2BrBRQ5V%2FJ7%2BcypVTd23viH2I%2BK6vH8DZ728Ua7VPvMLWSG%2B%2FlVn3ASCJ8588kUftEcUINzESWQA4%2F5TD7vvNpsTu52XoUuSbdLwPGFYv2cc5ddrVIF75iMZeDS3pIJekiDTkVLCw2enFRZNPP6tgx9jivRmO466VEB1cp9t7yvq5Tcyy5kjNUfixhTHwlgmbW8zfZLi60O59P%2Bx9KK%2B%2B6yb%2Far9MY2bKPFphuapes1chRYSy59mtvcXdsCZe2Nei9XVRf6QRz%2FfP9q5xaHpyZUwxOL4vQY6jwGRGLRyiCzjDaT9Kq55UsOb41FNRQjznpglKwRIL1RaHmVLiDutXjwgJuru%2BsKLWyESTkJDicmGtgEY5sGzHX8oSt6Gf5g3lRPXqjdqQbRo2UL5MLGlyDp1KADO795kCFfpR11OGfauURQmJAUApb%2B11n7U1MNmOVhwlP44T9vheWRBLbVcpxc9SnTS08CyvQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA25
+1740517755371,"6&X-Amz-Date=20250225T210902Z&X-Amz-SignedHeaders=host&X-Amz-Credential=ASIAU6GDW6YBDXMFSWNL%2F20250225%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Expires=1800&X-Amz-Signature=6e7a1c4295659c36975665f32e622195072b77b235ba735f84919f99309026f2
+"
+1740517755372,"25/02/25 21:09:15 INFO GlueLibsDownloader: Starting downloading URL to /tmp/glue-job-11474106834566810302/python/HGDoA1-AwsGlueMLLibs.py.zip using S3 endpoint
+"
+1740517756600,"25/02/25 21:09:16 INFO GlueLibsDownloader: Elapsed time: 1259 millis
+"
+1740517756643,"25/02/25 21:09:16 INFO GlueBootstrap: Invoking main method com.amazonaws.services.glue.PrepareLaunch
+"
+1740517756854,"1740517756850
+"
+1740517758190,"SLF4J: Failed to load class ""org.slf4j.impl.StaticLoggerBinder"".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+"
+1740517758312,"INFO	2025-02-25T21:09:18,311	10564	com.amazonaws.services.glue.utils.concurrent.PythonModuleTask	[pool-4-thread-1]	25	Setting Up Virtual Env and Application/Customer Provided Python Modules started in async mode
+"
+1740517758331,"INFO	2025-02-25T21:09:18,331	10584	com.amazonaws.services.glue.PythonModuleInstaller	[pool-4-thread-1]	176	Command to Execute python3.11 -m venv --clear /tmp/glue_venv
+"
+1740517758367,"INFO	2025-02-25T21:09:18,366	10619	com.amazonaws.services.glue.launch.helpers.SparkPropsManagerHelper	[main]	99	
+proxy {
+  host = null
+  port = -1
+}
+"
+1740517758384,"INFO	2025-02-25T21:09:18,383	10636	com.amazonaws.services.glue.utils.EndpointConfig$	[main]	36	 STAGE is prod
+"
+1740517758589,"INFO	2025-02-25T21:09:18,588	10841	com.amazonaws.services.glue.utils.EndpointConfig$	[main]	90	Endpoints: {credentials_provider=com.amazonaws.auth.DefaultAWSCredentialsProviderChain, glue.endpoint=https://glue.us-east-1.amazonaws.com, lakeformation.endpoint=https://lakeformation.us-east-1.amazonaws.com, jes.endpoint=https://glue-jes-prod.us-east-1.amazonaws.com, region=us-east-1}
+"
+1740517758637,"INFO	2025-02-25T21:09:18,637	10890	com.amazonaws.services.glue.utils.AWSClientUtils$	[main]	98	AWSClientUtils: create aws sts client with conf: proxy hostnull, proxy port 0
+"
+1740517759349,"INFO	2025-02-25T21:09:19,348	11601	com.amazonaws.services.glue.launch.helpers.SparkPropsManagerHelper	[main]	113	optimizeParallelismConfigs started 
+"
+1740517759356,"INFO	2025-02-25T21:09:19,356	11609	com.amazonaws.services.glue.launch.helpers.SparkPropsManagerHelper	[main]	59	glue.etl.telemetry.runtimeImproveFeature.autoscaling, jr_a7dec253b648886eab79e70fdec05a08531c460a58b98017e5887d45c57fce15
+"
+1740517759357,"INFO	2025-02-25T21:09:19,357	11610	com.amazonaws.services.glue.launch.helpers.LoggerPropsManager	[main]	31	setupLoggerProperties...
+"
+1740517759360,"WARN	2025-02-25T21:09:19,360	11613	com.amazonaws.services.glue.launch.helpers.LoggerPropsManager	[main]	60	Logger setup failed for exception analysis: Cannot invoke ""java.net.URL.toURI()"" because the return value of ""java.lang.Class.getResource(String)"" is null
+"
+1740517759365,"INFO	2025-02-25T21:09:19,365	11618	com.amazonaws.services.glue.FileDownloader	[main]	95	downloading /tmp/glue-18318917355016360957log4j2.properties file to destination location: /tmp/glue-job-11474106834566810302/glue-18318917355016360957log4j2.properties
+"
+1740517760078,"INFO	2025-02-25T21:09:20,077	12330	com.amazonaws.services.glue.launch.helpers.LoggerPropsManager	[main]	78	setting up the log4j.configurationFile=/tmp/glue-job-11474106834566810302/glue-18318917355016360957log4j2.properties
+"
+1740517760097,"INFO	2025-02-25T21:09:20,096	12349	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/aws_glue_connectors
+"
+1740517760097,"INFO	2025-02-25T21:09:20,097	12350	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/aws_glue_connectors/selected
+"
+1740517760097,"INFO	2025-02-25T21:09:20,097	12350	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/exception_catch
+"
+1740517760097,"INFO	2025-02-25T21:09:20,097	12350	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/amazon
+"
+1740517760098,"INFO	2025-02-25T21:09:20,097	12350	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/amazon/certs
+"
+1740517760098,"INFO	2025-02-25T21:09:20,097	12350	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/aws_glue_connectors/selected/native
+"
+1740517760098,"INFO	2025-02-25T21:09:20,098	12351	com.amazonaws.services.glue.PrepareLaunch	[main]	261	Creating directory /tmp/glue-job-11474106834566810302/aws_glue_connectors/marketplace
+"
+1740517760239,"INFO	2025-02-25T21:09:20,239	12492	com.amazonaws.services.glue.launch.helpers.ConnectionsManager	[main]	76	GLUE_CONNECTIVITY: attached connection types: ListBuffer()
+"
+1740517760611,"INFO	2025-02-25T21:09:20,610	12863	com.amazonaws.services.glue.PrepareLaunch	[main]	191	list of connectors to be added in classpath: List()
+"
+1740517760612,"INFO	2025-02-25T21:09:20,612	12865	com.amazonaws.services.glue.FileDownloader	[main]	95	downloading s3://gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py file to destination location: /tmp/glue-job-11474106834566810302/Hackathon-Test-Glue-1.py
+"
+1740517760862,"INFO	2025-02-25T21:09:20,861	13114	com.amazonaws.services.glue.utils.AWSS3Utils$	[main]	21	Encoding S3 URI s3://gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py
+"
+1740517760862,"INFO	2025-02-25T21:09:20,862	13115	com.amazonaws.services.glue.utils.AWSS3Utils$	[main]	26	Encoded S3 URI to s3://gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py
+"
+1740517760871,"INFO	2025-02-25T21:09:20,871	13124	com.amazonaws.services.glue.FileDownloader	[main]	138	Download bucket: gifs-infrastructure-ai-hackathon key: scripts/Hackathon-Test-Glue-1.py to /tmp/glue-job-11474106834566810302/Hackathon-Test-Glue-1.py with usingProxy: false and isProxyDisabled: true
+"
+1740517761602,"ERROR	2025-02-25T21:09:21,602	13855	com.amazonaws.services.glue.FileDownloader	[sdk-async-response-3-0]	147	java.util.concurrent.CompletionException: software.amazon.awssdk.services.s3.model.S3Exception: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1Q1FHSAFM7MR5M, Extended Request ID: lsbcSacRiALGAHQq2Z5muTQNR3gks5irMaxsV9M2OS5NYGh5AHxOMAybVEPNr1oZDURjU70aJ/Y=)
+INFO	2025-02-25T21:09:21,602	13855	com.amazonaws.services.glue.FileDownloader	[main]	160	SdkClientException occurred : software.amazon.awssdk.core.exception.SdkClientException: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/script"
+1740517761603,"s/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1Q1FHSAFM7MR5M, Extended Request ID: lsbcSacRiALGAHQq2Z5muTQNR3gks5irMaxsV9M2OS5NYGh5AHxOMAybVEPNr1oZDURjU70aJ/Y=)
+"
+1740517761603,"INFO	2025-02-25T21:09:21,602	13855	com.amazonaws.services.glue.FileDownloader	[main]	163	3 Retry(s) left
+"
+1740517761603,"INFO	2025-02-25T21:09:21,603	13856	com.amazonaws.services.glue.FileDownloader	[main]	138	Download bucket: gifs-infrastructure-ai-hackathon key: scripts/Hackathon-Test-Glue-1.py to /tmp/glue-job-11474106834566810302/Hackathon-Test-Glue-1.py with usingProxy: false and isProxyDisabled: true
+"
+1740517761637,"ERROR	2025-02-25T21:09:21,637	13890	com.amazonaws.services.glue.FileDownloader	[sdk-async-response-3-1]	147	java.util.concurrent.CompletionException: software.amazon.awssdk.services.s3.model.S3Exception: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1XRS9C7C2FRHPJ, Extended Request ID: 9g5EjLg2g8kKSgt/AMVQMovFY5GzZ/tnT+DXD0bKLp55/+86PzaYFb1bTSxIqOAU9u4J962gbcE=)
+INFO	2025-02-25T21:09:21,637	13890	com.amazonaws.services.glue.FileDownloader	[main]	160	SdkClientException occurred : software.amazon.awssdk.core.exception.SdkClientException: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/script"
+1740517761637,"s/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1XRS9C7C2FRHPJ, Extended Request ID: 9g5EjLg2g8kKSgt/AMVQMovFY5GzZ/tnT+DXD0bKLp55/+86PzaYFb1bTSxIqOAU9u4J962gbcE=)
+"
+1740517761637,"INFO	2025-02-25T21:09:21,637	13890	com.amazonaws.services.glue.FileDownloader	[main]	163	2 Retry(s) left
+"
+1740517761637,"INFO	2025-02-25T21:09:21,637	13890	com.amazonaws.services.glue.FileDownloader	[main]	138	Download bucket: gifs-infrastructure-ai-hackathon key: scripts/Hackathon-Test-Glue-1.py to /tmp/glue-job-11474106834566810302/Hackathon-Test-Glue-1.py with usingProxy: false and isProxyDisabled: true
+"
+1740517761656,"INFO	2025-02-25T21:09:21,656	13909	com.amazonaws.services.glue.FileDownloader	[main]	160	SdkClientException occurred : software.amazon.awssdk.core.exception.SdkClientException: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1P9YCM9X5049TF, Extended Request ID: t3mr1em4FWZleC7m7NlyyF4MfqsE5ByzVD9GafL9q5kPFNLw24mt2mMxYiUkd3eSk0+vvlvu5rY=)
+ERROR	2025-02-25T21:09:21,656	13909	com.amazonaws.services.glue.FileDownloader	[sdk-async-response-3-2]	147	java.util.concurrent.CompletionException: software.amazon.awssdk.services.s3.model.S3Exception: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/script"
+1740517761657,"s/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1P9YCM9X5049TF, Extended Request ID: t3mr1em4FWZleC7m7NlyyF4MfqsE5ByzVD9GafL9q5kPFNLw24mt2mMxYiUkd3eSk0+vvlvu5rY=)
+"
+1740517761657,"INFO	2025-02-25T21:09:21,656	13909	com.amazonaws.services.glue.FileDownloader	[main]	163	1 Retry(s) left
+"
+1740517761657,"INFO	2025-02-25T21:09:21,656	13909	com.amazonaws.services.glue.FileDownloader	[main]	138	Download bucket: gifs-infrastructure-ai-hackathon key: scripts/Hackathon-Test-Glue-1.py to /tmp/glue-job-11474106834566810302/Hackathon-Test-Glue-1.py with usingProxy: false and isProxyDisabled: true
+"
+1740517761669,"INFO	2025-02-25T21:09:21,669	13922	com.amazonaws.services.glue.FileDownloader	[main]	160	SdkClientException occurred : software.amazon.awssdk.core.exception.SdkClientException: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1NCSDKDWNHG690, Extended Request ID: aaGaCFjZIFqMuXR0Iq2BHAkXt6hG/+nMnIhdM/2eUXqTm4NWvvc+hewVR5VO5mUrl/F4GUDHd/Y=)
+ERROR	2025-02-25T21:09:21,669	13922	com.amazonaws.services.glue.FileDownloader	[sdk-async-response-3-3]	147	java.util.concurrent.CompletionException: software.amazon.awssdk.services.s3.model.S3Exception: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/script"
+1740517761670,"s/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1NCSDKDWNHG690, Extended Request ID: aaGaCFjZIFqMuXR0Iq2BHAkXt6hG/+nMnIhdM/2eUXqTm4NWvvc+hewVR5VO5mUrl/F4GUDHd/Y=)
+"
+1740517761672,"LAUNCH ERROR | Error downloading from S3 for bucket: gifs-infrastructure-ai-hackathon, key: scripts/Hackathon-Test-Glue-1.py.Please refer logs for details.
+"
+1740517761685,"ERROR	2025-02-25T21:09:21,680	13933	com.amazonaws.services.glue.GlueBootstrap	[main]	62	Bootstrapping failed 
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at com.amazonaws.services.glue.GlueBootstrap.invokeMainMethod(GlueBootstrap.java:325) ~[EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+	at com.amazonaws.services.glue.GlueBootstrap.launchPrepareStageOnDriver(GlueBootstrap.java:299) ~[EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+	at com.amazonaws.services.glue.GlueBootstrap.bootstrap(GlueBootstrap.java:75) ~[EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+	at com.amazonaws.services.glue.GlueBootstrap.main(GlueBootstrap.java:60) [EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.inv"
+1740517761685,"oke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at com.amazonaws.services.glue.GlueBootstrap.invokeMainMethod(GlueBootstrap.java:323) ~[EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+	... 3 more
+Caused by: software.amazon.awssdk.core.exception.SdkClientException: Error downloading from S3 for bucket: gifs-infrastructure-ai-hackathon, key: scripts/Hackathon-Test-Glue-1.py.
+	at software.amazon.awssdk.core.exception.SdkClientException$BuilderImpl.build(SdkClientException.java:111) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.throwS3SdkClientException(FileDownloader.scala:203) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:180) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:164) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDow"
+1740517761685,"nloader.s3download(FileDownloader.scala:164) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:164) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.download(FileDownloader.scala:101) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.launch.helpers.FileManager.processJarsAndFiles(FileManager.scala:117) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch.prepareClasspath(PrepareLaunch.scala:205) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch.prepareCmd(PrepareLaunch.scala:296) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch$.main(PrepareLaunch.scala:42) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch.main(PrepareLaunch.scala) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at jdk.internal.reflect.NativeMethodAcce"
+1740517761685,"ssorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at com.amazonaws.services.glue.GlueBootstrap.invokeMainMethod(GlueBootstrap.java:323) ~[EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+	... 3 more
+Caused by: software.amazon.awssdk.core.exception.SdkClientException: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1NCSDKDWNHG690, Extended Request ID: aaGaCFjZIFqMuXR0Iq2BHAkXt6hG/+nMnIhdM/2eUXqTm4NWvvc+hewVR5VO5mUrl/F4GUDHd/Y=)
+	at software.amazon.awssdk.core.exception.SdkClient"
+1740517761685,"Exception$BuilderImpl.build(SdkClientException.java:111) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:159) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:164) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:164) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.s3download(FileDownloader.scala:164) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.FileDownloader.download(FileDownloader.scala:101) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.launch.helpers.FileManager.processJarsAndFiles(FileManager.scala:117) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch.prepareClasspath(PrepareLaunch.scala:205) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazona"
+1740517761685,"ws.services.glue.PrepareLaunch.prepareCmd(PrepareLaunch.scala:296) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch$.main(PrepareLaunch.scala:42) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at com.amazonaws.services.glue.PrepareLaunch.main(PrepareLaunch.scala) ~[UcyzHl-aws-glue-di-package-5.0.349.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?]
+	at com.amazonaws.services.glue.GlueBootstrap.invokeMainMethod(GlueBootstrap.java:323) ~[EMRGlueBootstrap-5.0-jar-with-dependencies.jar:5.0]
+	... 3 more
+Caused by: software.amazon.awssdk.services.s3.model.S3Exception: User: arn:aws:sts::842675997893:assumed-role/gifs-glue-hackathon/GlueJobRunnerSession is not authorized to perform:"
+1740517761708," s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/scripts/Hackathon-Test-Glue-1.py"" because no identity-based policy allows the s3:GetObject action (Service: S3, Status Code: 403, Request ID: 8G1NCSDKDWNHG690, Extended Request ID: aaGaCFjZIFqMuXR0Iq2BHAkXt6hG/+nMnIhdM/2eUXqTm4NWvvc+hewVR5VO5mUrl/F4GUDHd/Y=)
+	at software.amazon.awssdk.services.s3.model.S3Exception$BuilderImpl.build(S3Exception.java:104) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.services.s3.model.S3Exception$BuilderImpl.build(S3Exception.java:58) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.protocols.query.internal.unmarshall.AwsXmlErrorUnmarshaller.unmarshall(AwsXmlErrorUnmarshaller.java:98) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.protocols.query.unmarshall.AwsXmlErrorProtocolUnmarshaller.handle(AwsXmlErrorProtocolUnmarshaller.java:102) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.protocols.query.unmarshall.AwsXmlErrorProtocolUnmarshaller.ha"
+1740517761708,"ndle(AwsXmlErrorProtocolUnmarshaller.java:82) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.core.http.MetricCollectingHttpResponseHandler.lambda$handle$0(MetricCollectingHttpResponseHandler.java:52) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.core.internal.util.MetricUtils.measureDurationUnsafe(MetricUtils.java:99) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.core.internal.util.MetricUtils.measureDurationUnsafe(MetricUtils.java:92) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.core.http.MetricCollectingHttpResponseHandler.handle(MetricCollectingHttpResponseHandler.java:52) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.core.internal.http.async.AsyncResponseHandler.lambda$prepare$0(AsyncResponseHandler.java:92) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1150) ~[?:?]
+	at java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.j"
+1740517761708,ava:510)
+1740517761708," ~[?:?]
+	at java.util.concurrent.CompletableFuture.complete(CompletableFuture.java:2147) ~[?:?]
+	at software.amazon.awssdk.core.internal.http.async.AsyncResponseHandler$BaosSubscriber.onComplete(AsyncResponseHandler.java:135) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.core.internal.metrics.BytesReadTrackingPublisher$BytesReadTracker.onComplete(BytesReadTrackingPublisher.java:74) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.ResponseHandler$DataCountingPublisher$1.onComplete(ResponseHandler.java:519) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.ResponseHandler.runAndLogError(ResponseHandler.java:254) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.ResponseHandler.access$600(ResponseHandler.java:77) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.ResponseHandler$PublisherAdapter$1.onComplete(ResponseHandler.java:375) ~[aws-sdk-java-b"
+1740517761708,"undle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.nrs.HandlerPublisher.publishMessage(HandlerPublisher.java:402) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.nrs.HandlerPublisher.flushBuffer(HandlerPublisher.java:338) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.nrs.HandlerPublisher.receivedDemand(HandlerPublisher.java:291) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.nrs.HandlerPublisher.access$200(HandlerPublisher.java:61) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.http.nio.netty.internal.nrs.HandlerPublisher$ChannelSubscription$1.run(HandlerPublisher.java:495) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.thirdparty.io.netty.util.concurrent.AbstractEventExecutor.runTask(AbstractEventExecutor.java:173) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.thirdparty.io.netty.util.concurrent.AbstractEventExecutor.safeE"
+1740517761708,"xecute(AbstractEventExecutor.java:166) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.thirdparty.io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:469) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.thirdparty.io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:566) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.thirdparty.io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:994) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at software.amazon.awssdk.thirdparty.io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[aws-sdk-java-bundle-2.28.8.jar:?]
+	at java.lang.Thread.run(Thread.java:840) ~[?:?]
+"

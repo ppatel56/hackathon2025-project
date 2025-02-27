@@ -1,0 +1,27 @@
+timestamp,message
+1740593515163,"INIT_START Runtime Version: python:3.12.v38	Runtime Version ARN: arn:aws:lambda:us-east-1::runtime:6ea5f72a8a27124ba0bc2bb6d2d4094f8560fac75ead0a3d8434a209061a5566
+"
+1740593515455,"START RequestId: bb841fd8-3030-4181-ab71-fa4adb8e5b10 Version: $LATEST
+"
+1740593518483,"LAMBDA_WARNING: Unhandled exception. The most likely cause is an issue in the function code. However, in rare cases, a Lambda runtime update can cause unexpected function behavior. For functions using managed runtimes, runtime updates can be triggered by a function change, or can be applied automatically. To determine if the runtime has been updated, check the runtime version in the INIT_START log entry. If this error correlates with a change in the runtime version, you may be able to mitigate this error by temporarily rolling back to the previous runtime version. For more information, see https://docs.aws.amazon.com/lambda/latest/dg/runtimes-update.html
+"
+1740593518483,"[ERROR] ClientError: An error occurred (AccessDenied) when calling the GetObject operation: User: arn:aws:sts::842675997893:assumed-role/gifs-infrastructure-hackathon-lambda-role-cmt7mocp/gifs-infrastructure-hackathon-lambda is not authorized to perform: s3:GetObject on resource: ""arn:aws:s3:::gifs-infrastructure-ai-hackathon/mock-data/test_file.txt"" because no identity-based policy allows the s3:GetObject action
+Traceback (most recent call last):
+  File ""/var/task/lambda_function.py"", line 9, in lambda_handler
+    response = s3_client.get_object(Bucket=bucket_name, Key=key)
+  File ""/var/lang/lib/python3.12/site-packages/botocore/client.py"", line 565, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File ""/var/lang/lib/python3.12/site-packages/botocore/client.py"", line 1021, in _make_api_call
+    raise error_class(parsed_response, operation_name)"
+1740593518505,"END RequestId: bb841fd8-3030-4181-ab71-fa4adb8e5b10
+"
+1740593518505,"REPORT RequestId: bb841fd8-3030-4181-ab71-fa4adb8e5b10	Duration: 3048.90 ms	Billed Duration: 3049 ms	Memory Size: 128 MB	Max Memory Used: 85 MB	Init Duration: 287.98 ms	
+"
+1740593756121,"START RequestId: 37b242d5-a775-41b0-9880-8a3964e386ce Version: $LATEST
+"
+1740593756797,"['field1~field2~field3', 'data1col1~datacol~data1\\Ncol', 'data2col1~datacol~data2col', 'data3col3~datacol~data3col', 'data3col3~1234~1234', 'data3col3~5678~5678']
+"
+1740593756838,"END RequestId: 37b242d5-a775-41b0-9880-8a3964e386ce
+"
+1740593756838,"REPORT RequestId: 37b242d5-a775-41b0-9880-8a3964e386ce	Duration: 715.56 ms	Billed Duration: 716 ms	Memory Size: 128 MB	Max Memory Used: 85 MB	
+"
