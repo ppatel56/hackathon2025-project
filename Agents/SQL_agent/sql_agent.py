@@ -223,12 +223,14 @@ def create_sql_agent():
     return app
 
 if __name__ == "__main__":
-    # messages = app.invoke(
-    #     {"messages": [("user", "how many cloudwatch logs do we have?")]}
-    # )
     app = create_sql_agent()
-    for event in app.stream(
-        {"messages": [("user", "how many cloudwatch logs do we have related to lambda?")]}
-    ):
-        print(event)
-    print()
+    # for event in app.stream(
+    #     {"messages": [("user", "how many cloudwatch logs do we have related to lambda?")]}
+    # ):
+    #     print(event)
+    
+    messages = app.invoke(
+        {"messages": [("user", "how many cloudwatch logs do we have?")]}
+    )
+    print("===")
+    print(messages['messages'][-1].content)

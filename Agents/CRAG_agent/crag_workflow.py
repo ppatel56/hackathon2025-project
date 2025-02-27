@@ -1,7 +1,7 @@
 from langchain_aws import ChatBedrock
 import os
 
-from create_vector_store import read_index
+from CRAG_agent.create_vector_store import read_index
 
 from langgraph.graph import END, StateGraph, START
 
@@ -324,3 +324,5 @@ if __name__ == "__main__":
     pprint(f"Response: {result["generation"]}")
     pprint(f"Links: {result["links"]}")
     pprint(f"Documents: {result['documents']}")
+    print("-----------------")
+    print(f"Result: {result}")
