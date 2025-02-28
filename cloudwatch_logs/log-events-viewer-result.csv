@@ -1,0 +1,514 @@
+timestamp,message
+1740753270013,"INFO	2025-02-28T14:34:30,012	19829	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_3 stored as values in memory (estimated size 16.9 KiB, free 11.8 GiB)
+"
+1740753270015,"INFO	2025-02-28T14:34:30,015	19832	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_3_piece0 stored as bytes in memory (estimated size 8.3 KiB, actual size: 8.3 KiB, free 11.8 GiB)
+"
+1740753270016,"INFO	2025-02-28T14:34:30,016	19833	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_3_piece0 in memory on 172.39.19.99:42393 (size: 8.3 KiB, free: 11.8 GiB)
+"
+1740753270017,"INFO	2025-02-28T14:34:30,017	19834	org.apache.spark.SparkContext	[dag-scheduler-event-loop]	60	Created broadcast 3 from broadcast at DAGScheduler.scala:1664
+"
+1740753270038,"INFO	2025-02-28T14:34:30,037	19854	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at csv at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+"
+1740753270039,"INFO	2025-02-28T14:34:30,039	19856	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Adding task set 0.0 with 1 tasks resource profile 0
+"
+1740753280791,"INFO	2025-02-28T14:34:40,790	30607	org.apache.spark.scheduler.cluster.glue.JESSchedulerBackend$JESAsSchedulerBackendEndpoint	[dispatcher-CoarseGrainedScheduler]	60	Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.35.135.69:40006) with ID 1,  ResourceProfileId 0
+"
+1740753280792,"INFO	2025-02-28T14:34:40,792	30609	org.apache.spark.executor.ExecutorLogUrlHandler	[dispatcher-CoarseGrainedScheduler]	60	Fail to renew executor log urls: some of required attributes are missing in app's event log.. Required: Set(CONTAINER_ID) / available: Set(). Falling back to show app's original log urls.
+"
+1740753280793,"INFO	2025-02-28T14:34:40,793	30610	org.apache.spark.scheduler.cluster.glue.ExecutorEventListener	[spark-listener-group-shared]	60	Got executor added event for 1 @ 1740753280792
+"
+1740753280794,"INFO	2025-02-28T14:34:40,793	30610	org.apache.spark.scheduler.cluster.glue.allocator.ExecutorTaskAllocator	[spark-listener-group-shared]	60	connected executor 1
+"
+1740753280797,"INFO	2025-02-28T14:34:40,797	30614	org.apache.spark.scheduler.dynalloc.ExecutorMonitor	[spark-listener-group-executorManagement]	60	New executor 1 has registered (new total is 1)
+"
+1740753280861,"INFO	2025-02-28T14:34:40,860	30677	org.apache.spark.storage.BlockManagerMasterEndpoint	[dispatcher-BlockManagerMaster]	60	Registering block manager 172.35.135.69:39689 with 11.8 GiB RAM, BlockManagerId(1, 172.35.135.69, 39689, None)
+"
+1740753281714,"INFO	2025-02-28T14:34:41,714	31531	org.apache.spark.scheduler.TaskSetManager	[dispatcher-CoarseGrainedScheduler]	60	Starting task 0.0 in stage 0.0 (TID 0) (172.35.135.69, executor 1, partition 0, ANY, 10421 bytes) 
+"
+1740753282123,"INFO	2025-02-28T14:34:42,122	31939	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_3_piece0 in memory on 172.35.135.69:39689 (size: 8.3 KiB, free: 11.8 GiB)
+"
+1740753283342,"INFO	2025-02-28T14:34:43,342	33159	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_2_piece0 in memory on 172.35.135.69:39689 (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753283869,"INFO	2025-02-28T14:34:43,869	33686	com.amazonaws.services.glue.LogPusher	[pool-6-thread-1]	60	uploading file:///var/log/spark/apps to s3://aws-glue-assets-842675997893-us-east-1/sparkHistoryLogs/
+"
+1740753283954,"ERROR	2025-02-28T14:34:43,949	33766	com.amazonaws.services.glue.LogPusher	[pool-6-thread-1]	97	com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: NE2H7APDDD0ND70V; S3 Extended Request ID: ylyDlnN9l8ta32ZbgE0bhOhsmz6dbPI0YoDYe2JF0663zrm5WTv32Qu4cMsnCrxlzaCEYEOi3UQ=; Proxy: null), S3 Extended Request ID: ylyDlnN9l8ta32ZbgE0bhOhsmz6dbPI0YoDYe2JF0663zrm5WTv32Qu4cMsnCrxlzaCEYEOi3UQ=
+java.io.IOException: com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: NE2H7APDDD0ND70V; S3 Extended Request ID: ylyDlnN9l8ta32ZbgE0bhOhsmz6dbPI0YoDYe2JF0663zrm5WTv32Qu4cMsnCrxlzaCEYEOi3UQ=; Proxy: null), S3 Extended Request ID: ylyDlnN9l8ta32ZbgE0bhOhsmz6dbPI0YoDYe2JF0663zrm5WTv32Qu4cMsnCrxlzaCEYEOi3UQ=
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets"
+1740753283954,"3tNativeFileSystemStore.list(Jets3tNativeFileSystemStore.java:429) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets3tNativeFileSystemStore.isFolderUsingFolderObject(Jets3tNativeFileSystemStore.java:255) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets3tNativeFileSystemStore.isFolder(Jets3tNativeFileSystemStore.java:218) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.S3NativeFileSystem.getFileStatus(S3NativeFileSystem.java:554) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at org.apache.hadoop.fs.FileUtil.checkDest(FileUtil.java:611) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileUtil.copy(FileUtil.java:468) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileUtil.copy(FileUtil.java:432) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:2647) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileSystem.copyFromLocalFile"
+1740753283954,"(FileSystem.java:2613) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:2575) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.EmrFileSystem.copyFromLocalFile(EmrFileSystem.java:518) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazonaws.services.glue.LogPusher.upload(LogPusher.scala:72) [wLYyfB-aws-glue-di-package-5.0.351.jar:?]
+	at com.amazonaws.services.glue.LogPusher.run(LogPusher.scala:93) [wLYyfB-aws-glue-di-package-5.0.351.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:840"
+1740753283954,") [?:?]
+Caused by: com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: NE2H7APDDD0ND70V; S3 Extended Request ID: ylyDlnN9l8ta32ZbgE0bhOhsmz6dbPI0YoDYe2JF0663zrm5WTv32Qu4cMsnCrxlzaCEYEOi3UQ=; Proxy: null)
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleErrorResponse(AmazonHttpClient.java:1879) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleServiceErrorResponse(AmazonHttpClient.java:1418) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1387) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1157) ~[em"
+1740753283954,"rfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:814) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:781) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:755) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:715) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:697) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:561) ~[emrfs-hadoop-assembly-2.66.0.jar"
+1740753283954,":?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:541) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5558) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5505) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.AmazonS3Client.listObjectsV2(AmazonS3Client.java:1002) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.call.ListObjectsV2Call.perform(ListObjectsV2Call.java:26) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.call.ListObjectsV2Call.perform(ListObjectsV2Call.java:12) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.executor.GlobalS3Executor$CallPerformer.call(GlobalS3Executor.java:114) ~[emrfs-hadoop-assembly-2.66"
+1740753283954,".0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.executor.GlobalS3Executor.execute(GlobalS3Executor.java:141) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.AmazonS3LiteClient.invoke(AmazonS3LiteClient.java:196) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.AmazonS3LiteClient.invoke(AmazonS3LiteClient.java:191) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.AmazonS3LiteClient.listObjectsV2(AmazonS3LiteClient.java:75) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets3tNativeFileSystemStore.list(Jets3tNativeFileSystemStore.java:420) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	... 18 more
+"
+1740753284459,"INFO	2025-02-28T14:34:44,459	34276	org.apache.spark.scheduler.TaskSetManager	[task-result-getter-0]	60	Finished task 0.0 in stage 0.0 (TID 0) in 2758 ms on 172.35.135.69 (executor 1) (1/1)
+"
+1740753284461,"INFO	2025-02-28T14:34:44,461	34278	org.apache.spark.scheduler.TaskSchedulerImpl	[task-result-getter-0]	60	Removed TaskSet 0.0, whose tasks have all completed, from pool 
+"
+1740753284466,"INFO	2025-02-28T14:34:44,465	34282	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	ResultStage 0 (csv at NativeMethodAccessorImpl.java:0) finished in 14.540 s
+"
+1740753284469,"INFO	2025-02-28T14:34:44,469	34286	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+"
+1740753284469,"INFO	2025-02-28T14:34:44,469	34286	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Killing all running tasks in stage 0: Stage finished
+"
+1740753284472,"INFO	2025-02-28T14:34:44,471	34288	org.apache.spark.scheduler.DAGScheduler	[Thread-7]	60	Job 0 finished: csv at NativeMethodAccessorImpl.java:0, took 14.590416 s
+"
+1740753284496,"INFO	2025-02-28T14:34:44,495	34312	org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator	[Thread-7]	60	Code generated in 13.268412 ms
+"
+1740753284509,"INFO	2025-02-28T14:34:44,509	34326	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Generating and posting SparkListenerSQLExecutionObfuscatedInfo...
+"
+1740753284512,"INFO	2025-02-28T14:34:44,512	34329	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Posted SparkListenerSQLExecutionObfuscatedInfo in 3 ms
+"
+1740753284577,"INFO	2025-02-28T14:34:44,576	34393	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Pushed Filters: 
+"
+1740753284577,"INFO	2025-02-28T14:34:44,577	34394	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Post-Scan Filters: 
+"
+1740753284587,"INFO	2025-02-28T14:34:44,586	34403	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_4 stored as values in memory (estimated size 304.7 KiB, free 11.8 GiB)
+"
+1740753284600,"INFO	2025-02-28T14:34:44,599	34416	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_4_piece0 stored as bytes in memory (estimated size 57.5 KiB, actual size: 57.5 KiB, free 11.8 GiB)
+"
+1740753284601,"INFO	2025-02-28T14:34:44,600	34417	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_4_piece0 in memory on 172.39.19.99:42393 (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753284602,"INFO	2025-02-28T14:34:44,601	34418	org.apache.spark.SparkContext	[Thread-7]	60	Created broadcast 4 from csv at NativeMethodAccessorImpl.java:0
+"
+1740753284603,"INFO	2025-02-28T14:34:44,603	34420	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes, number of split files: 1, prefetch: false
+"
+1740753284603,"INFO	2025-02-28T14:34:44,603	34420	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	relation: None, fileSplitsInPartitionHistogram: Vector((1 fileSplits,1))
+"
+1740753284714,"INFO	2025-02-28T14:34:44,714	34531	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Pushed Filters: 
+"
+1740753284715,"INFO	2025-02-28T14:34:44,714	34531	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Post-Scan Filters: 
+"
+1740753284730,"INFO	2025-02-28T14:34:44,730	34547	org.apache.spark.metrics.source.ThroughputMetricsSource	[spark-listener-group-shared]	30	Metric: s3://gifs-infrastructure-ai-hackathon/mock-data/kaggle-dataset/NVDA2.csv.filesRead is already registered by a different accumulator. Retrying with suffix #1.
+"
+1740753284730,"INFO	2025-02-28T14:34:44,730	34547	org.apache.spark.metrics.source.ThroughputMetricsSource	[spark-listener-group-shared]	30	Metric: s3://gifs-infrastructure-ai-hackathon/mock-data/kaggle-dataset/NVDA2.csv.bytesRead is already registered by a different accumulator. Retrying with suffix #1.
+"
+1740753284744,"INFO	2025-02-28T14:34:44,730	34547	org.apache.spark.metrics.source.ThroughputMetricsSource	[spark-listener-group-shared]	30	Metric: s3://gifs-infrastructure-ai-hackathon/mock-data/kaggle-dataset/NVDA2.csv.recordsRead is already registered by a different accumulator. Retrying with suffix #1.
+"
+1740753284768,"INFO	2025-02-28T14:34:44,768	34585	org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator	[Thread-7]	60	Code generated in 15.417272 ms
+"
+1740753284773,"INFO	2025-02-28T14:34:44,772	34589	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_5 stored as values in memory (estimated size 304.6 KiB, free 11.8 GiB)
+"
+1740753284785,"INFO	2025-02-28T14:34:44,785	34602	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_5_piece0 stored as bytes in memory (estimated size 57.3 KiB, actual size: 57.3 KiB, free 11.8 GiB)
+"
+1740753284786,"INFO	2025-02-28T14:34:44,786	34603	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_5_piece0 in memory on 172.39.19.99:42393 (size: 57.3 KiB, free: 11.8 GiB)
+"
+1740753284787,"INFO	2025-02-28T14:34:44,787	34604	org.apache.spark.SparkContext	[Thread-7]	60	Created broadcast 5 from showString at NativeMethodAccessorImpl.java:0
+"
+1740753284794,"INFO	2025-02-28T14:34:44,793	34610	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes, number of split files: 1, prefetch: false
+"
+1740753284794,"INFO	2025-02-28T14:34:44,794	34611	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	relation: None, fileSplitsInPartitionHistogram: Vector((1 fileSplits,1))
+"
+1740753284805,"INFO	2025-02-28T14:34:44,805	34622	org.apache.spark.SparkContext	[Thread-7]	60	Starting job: showString at NativeMethodAccessorImpl.java:0
+"
+1740753284806,"INFO	2025-02-28T14:34:44,806	34623	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Got job 1 (showString at NativeMethodAccessorImpl.java:0) with 1 output partitions
+"
+1740753284806,"INFO	2025-02-28T14:34:44,806	34623	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Final stage: ResultStage 1 (showString at NativeMethodAccessorImpl.java:0)
+"
+1740753284806,"INFO	2025-02-28T14:34:44,806	34623	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Parents of final stage: List()
+"
+1740753284807,"INFO	2025-02-28T14:34:44,807	34624	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Missing parents: List()
+"
+1740753284807,"INFO	2025-02-28T14:34:44,807	34624	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting ResultStage 1 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+"
+1740753284813,"INFO	2025-02-28T14:34:44,813	34630	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_6 stored as values in memory (estimated size 20.8 KiB, free 11.8 GiB)
+"
+1740753284821,"INFO	2025-02-28T14:34:44,821	34638	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_6_piece0 stored as bytes in memory (estimated size 9.5 KiB, actual size: 9.5 KiB, free 11.8 GiB)
+"
+1740753284826,"INFO	2025-02-28T14:34:44,826	34643	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_6_piece0 in memory on 172.39.19.99:42393 (size: 9.5 KiB, free: 11.8 GiB)
+"
+1740753284827,"INFO	2025-02-28T14:34:44,827	34644	org.apache.spark.SparkContext	[dag-scheduler-event-loop]	60	Created broadcast 6 from broadcast at DAGScheduler.scala:1664
+"
+1740753284827,"INFO	2025-02-28T14:34:44,827	34644	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Removed broadcast_3_piece0 on 172.39.19.99:42393 in memory (size: 8.3 KiB, free: 11.8 GiB)
+"
+1740753284828,"INFO	2025-02-28T14:34:44,828	34645	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting 1 missing tasks from ResultStage 1 (MapPartitionsRDD[13] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+"
+1740753284841,"INFO	2025-02-28T14:34:44,828	34645	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Adding task set 1.0 with 1 tasks resource profile 0
+"
+1740753284842,"INFO	2025-02-28T14:34:44,830	34647	org.apache.spark.scheduler.TaskSetManager	[dispatcher-CoarseGrainedScheduler]	60	Starting task 0.0 in stage 1.0 (TID 1) (172.35.135.69, executor 1, partition 0, ANY, 10421 bytes) 
+"
+1740753284842,"INFO	2025-02-28T14:34:44,838	34655	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Removed broadcast_3_piece0 on 172.35.135.69:39689 in memory (size: 8.3 KiB, free: 11.8 GiB)
+"
+1740753284846,"INFO	2025-02-28T14:34:44,846	34663	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_6_piece0 in memory on 172.35.135.69:39689 (size: 9.5 KiB, free: 11.8 GiB)
+"
+1740753284924,"INFO	2025-02-28T14:34:44,923	34740	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_5_piece0 in memory on 172.35.135.69:39689 (size: 57.3 KiB, free: 11.8 GiB)
+"
+1740753284941,"INFO	2025-02-28T14:34:44,941	34758	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Removed broadcast_2_piece0 on 172.39.19.99:42393 in memory (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753284943,"INFO	2025-02-28T14:34:44,943	34760	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Removed broadcast_2_piece0 on 172.35.135.69:39689 in memory (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753284948,"INFO	2025-02-28T14:34:44,947	34764	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Removed broadcast_4_piece0 on 172.39.19.99:42393 in memory (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753285124,"INFO	2025-02-28T14:34:45,123	34940	org.apache.spark.scheduler.TaskSetManager	[task-result-getter-1]	60	Finished task 0.0 in stage 1.0 (TID 1) in 293 ms on 172.35.135.69 (executor 1) (1/1)
+"
+1740753285124,"INFO	2025-02-28T14:34:45,124	34941	org.apache.spark.scheduler.TaskSchedulerImpl	[task-result-getter-1]	60	Removed TaskSet 1.0, whose tasks have all completed, from pool 
+"
+1740753285125,"INFO	2025-02-28T14:34:45,125	34942	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	ResultStage 1 (showString at NativeMethodAccessorImpl.java:0) finished in 0.315 s
+"
+1740753285125,"INFO	2025-02-28T14:34:45,125	34942	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Job 1 is finished. Cancelling potential speculative or zombie tasks for this job
+"
+1740753285125,"INFO	2025-02-28T14:34:45,125	34942	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Killing all running tasks in stage 1: Stage finished
+"
+1740753285126,"INFO	2025-02-28T14:34:45,126	34943	org.apache.spark.scheduler.DAGScheduler	[Thread-7]	60	Job 1 finished: showString at NativeMethodAccessorImpl.java:0, took 0.320583 s
+"
+1740753285149,"INFO	2025-02-28T14:34:45,148	34965	org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator	[Thread-7]	60	Code generated in 14.220142 ms
+"
+1740753285151,"INFO	2025-02-28T14:34:45,151	34968	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Generating and posting SparkListenerSQLExecutionObfuscatedInfo...
+"
+1740753285152,"INFO	2025-02-28T14:34:45,151	34968	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Posted SparkListenerSQLExecutionObfuscatedInfo in 0 ms
+"
+1740753285224,"INFO	2025-02-28T14:34:45,224	35041	org.apache.spark.sql.execution.datasources.InMemoryFileIndex	[Thread-7]	60	It took 1 ms to list leaf files for 1 paths.
+"
+1740753285234,"INFO	2025-02-28T14:34:45,233	35050	org.apache.spark.sql.execution.datasources.InMemoryFileIndex	[Thread-7]	60	It took 1 ms to list leaf files for 1 paths.
+"
+1740753285290,"INFO	2025-02-28T14:34:45,290	35107	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Pushed Filters: 
+"
+1740753285305,"INFO	2025-02-28T14:34:45,290	35107	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Post-Scan Filters: (length(trim(value#69, None)) > 0)
+"
+1740753285306,"INFO	2025-02-28T14:34:45,300	35117	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_7 stored as values in memory (estimated size 304.7 KiB, free 11.8 GiB)
+"
+1740753285315,"INFO	2025-02-28T14:34:45,315	35132	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_7_piece0 stored as bytes in memory (estimated size 57.5 KiB, actual size: 57.5 KiB, free 11.8 GiB)
+"
+1740753285316,"INFO	2025-02-28T14:34:45,316	35133	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_7_piece0 in memory on 172.39.19.99:42393 (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753285317,"INFO	2025-02-28T14:34:45,317	35134	org.apache.spark.SparkContext	[Thread-7]	60	Created broadcast 7 from csv at NativeMethodAccessorImpl.java:0
+"
+1740753285320,"INFO	2025-02-28T14:34:45,320	35137	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes, number of split files: 1, prefetch: false
+"
+1740753285320,"INFO	2025-02-28T14:34:45,320	35137	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	relation: None, fileSplitsInPartitionHistogram: Vector((1 fileSplits,1))
+"
+1740753285337,"INFO	2025-02-28T14:34:45,336	35153	org.apache.spark.SparkContext	[Thread-7]	60	Starting job: csv at NativeMethodAccessorImpl.java:0
+"
+1740753285338,"INFO	2025-02-28T14:34:45,338	35155	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Got job 2 (csv at NativeMethodAccessorImpl.java:0) with 1 output partitions
+"
+1740753285339,"INFO	2025-02-28T14:34:45,338	35155	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Final stage: ResultStage 2 (csv at NativeMethodAccessorImpl.java:0)
+"
+1740753285339,"INFO	2025-02-28T14:34:45,338	35155	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Parents of final stage: List()
+"
+1740753285339,"INFO	2025-02-28T14:34:45,339	35156	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Missing parents: List()
+"
+1740753285340,"INFO	2025-02-28T14:34:45,339	35156	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting ResultStage 2 (MapPartitionsRDD[17] at csv at NativeMethodAccessorImpl.java:0), which has no missing parents
+"
+1740753285344,"INFO	2025-02-28T14:34:45,344	35161	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_8 stored as values in memory (estimated size 17.0 KiB, free 11.8 GiB)
+"
+1740753285346,"INFO	2025-02-28T14:34:45,346	35163	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_8_piece0 stored as bytes in memory (estimated size 8.3 KiB, actual size: 8.3 KiB, free 11.8 GiB)
+"
+1740753285347,"INFO	2025-02-28T14:34:45,347	35164	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_8_piece0 in memory on 172.39.19.99:42393 (size: 8.3 KiB, free: 11.8 GiB)
+"
+1740753285348,"INFO	2025-02-28T14:34:45,348	35165	org.apache.spark.SparkContext	[dag-scheduler-event-loop]	60	Created broadcast 8 from broadcast at DAGScheduler.scala:1664
+"
+1740753285349,"INFO	2025-02-28T14:34:45,349	35166	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting 1 missing tasks from ResultStage 2 (MapPartitionsRDD[17] at csv at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+"
+1740753285349,"INFO	2025-02-28T14:34:45,349	35166	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Adding task set 2.0 with 1 tasks resource profile 0
+"
+1740753285351,"INFO	2025-02-28T14:34:45,351	35168	org.apache.spark.scheduler.TaskSetManager	[dispatcher-CoarseGrainedScheduler]	60	Starting task 0.0 in stage 2.0 (TID 2) (172.35.135.69, executor 1, partition 0, ANY, 10436 bytes) 
+"
+1740753285370,"INFO	2025-02-28T14:34:45,369	35186	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_8_piece0 in memory on 172.35.135.69:39689 (size: 8.3 KiB, free: 11.8 GiB)
+"
+1740753285386,"INFO	2025-02-28T14:34:45,386	35203	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_7_piece0 in memory on 172.35.135.69:39689 (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753285569,"INFO	2025-02-28T14:34:45,569	35386	org.apache.spark.scheduler.TaskSetManager	[task-result-getter-2]	60	Finished task 0.0 in stage 2.0 (TID 2) in 219 ms on 172.35.135.69 (executor 1) (1/1)
+"
+1740753285570,"INFO	2025-02-28T14:34:45,569	35386	org.apache.spark.scheduler.TaskSchedulerImpl	[task-result-getter-2]	60	Removed TaskSet 2.0, whose tasks have all completed, from pool 
+"
+1740753285571,"INFO	2025-02-28T14:34:45,570	35387	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	ResultStage 2 (csv at NativeMethodAccessorImpl.java:0) finished in 0.229 s
+"
+1740753285571,"INFO	2025-02-28T14:34:45,571	35388	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Job 2 is finished. Cancelling potential speculative or zombie tasks for this job
+"
+1740753285571,"INFO	2025-02-28T14:34:45,571	35388	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Killing all running tasks in stage 2: Stage finished
+"
+1740753285572,"INFO	2025-02-28T14:34:45,572	35389	org.apache.spark.scheduler.DAGScheduler	[Thread-7]	60	Job 2 finished: csv at NativeMethodAccessorImpl.java:0, took 0.235070 s
+"
+1740753285577,"INFO	2025-02-28T14:34:45,577	35394	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Generating and posting SparkListenerSQLExecutionObfuscatedInfo...
+"
+1740753285577,"INFO	2025-02-28T14:34:45,577	35394	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Posted SparkListenerSQLExecutionObfuscatedInfo in 0 ms
+"
+1740753285589,"INFO	2025-02-28T14:34:45,589	35406	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Pushed Filters: 
+"
+1740753285589,"INFO	2025-02-28T14:34:45,589	35406	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Post-Scan Filters: 
+"
+1740753285595,"INFO	2025-02-28T14:34:45,594	35411	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_9 stored as values in memory (estimated size 304.7 KiB, free 11.8 GiB)
+"
+1740753285607,"INFO	2025-02-28T14:34:45,607	35424	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_9_piece0 stored as bytes in memory (estimated size 57.5 KiB, actual size: 57.5 KiB, free 11.8 GiB)
+"
+1740753285608,"INFO	2025-02-28T14:34:45,607	35424	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_9_piece0 in memory on 172.39.19.99:42393 (size: 57.5 KiB, free: 11.8 GiB)
+"
+1740753285608,"INFO	2025-02-28T14:34:45,608	35425	org.apache.spark.SparkContext	[Thread-7]	60	Created broadcast 9 from csv at NativeMethodAccessorImpl.java:0
+"
+1740753285609,"INFO	2025-02-28T14:34:45,609	35426	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes, number of split files: 1, prefetch: false
+"
+1740753285609,"INFO	2025-02-28T14:34:45,609	35426	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	relation: None, fileSplitsInPartitionHistogram: Vector((1 fileSplits,1))
+"
+1740753285657,"INFO	2025-02-28T14:34:45,656	35473	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Pushed Filters: 
+"
+1740753285657,"INFO	2025-02-28T14:34:45,657	35474	org.apache.spark.sql.execution.datasources.FileSourceStrategy	[Thread-7]	60	Post-Scan Filters: 
+"
+1740753285664,"INFO	2025-02-28T14:34:45,664	35481	org.apache.spark.metrics.source.ThroughputMetricsSource	[spark-listener-group-shared]	30	Metric: s3://gifs-infrastructure-ai-hackathon/mock-data/kaggle-dataset/walmart_stock_prices.csv.filesRead is already registered by a different accumulator. Retrying with suffix #1.
+"
+1740753285664,"INFO	2025-02-28T14:34:45,664	35481	org.apache.spark.metrics.source.ThroughputMetricsSource	[spark-listener-group-shared]	30	Metric: s3://gifs-infrastructure-ai-hackathon/mock-data/kaggle-dataset/walmart_stock_prices.csv.bytesRead is already registered by a different accumulator. Retrying with suffix #1.
+"
+1740753285664,"INFO	2025-02-28T14:34:45,664	35481	org.apache.spark.metrics.source.ThroughputMetricsSource	[spark-listener-group-shared]	30	Metric: s3://gifs-infrastructure-ai-hackathon/mock-data/kaggle-dataset/walmart_stock_prices.csv.recordsRead is already registered by a different accumulator. Retrying with suffix #1.
+"
+1740753285703,"INFO	2025-02-28T14:34:45,702	35519	org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator	[Thread-7]	60	Code generated in 23.512994 ms
+"
+1740753285707,"INFO	2025-02-28T14:34:45,707	35524	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_10 stored as values in memory (estimated size 304.6 KiB, free 11.8 GiB)
+"
+1740753285721,"INFO	2025-02-28T14:34:45,721	35538	org.apache.spark.storage.memory.MemoryStore	[Thread-7]	60	Block broadcast_10_piece0 stored as bytes in memory (estimated size 57.3 KiB, actual size: 57.3 KiB, free 11.8 GiB)
+"
+1740753285722,"INFO	2025-02-28T14:34:45,721	35538	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_10_piece0 in memory on 172.39.19.99:42393 (size: 57.3 KiB, free: 11.8 GiB)
+"
+1740753285722,"INFO	2025-02-28T14:34:45,722	35539	org.apache.spark.SparkContext	[Thread-7]	60	Created broadcast 10 from showString at NativeMethodAccessorImpl.java:0
+"
+1740753285725,"INFO	2025-02-28T14:34:45,724	35541	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	Planning scan with bin packing, max size: 4194304 bytes, open cost is considered as scanning 4194304 bytes, number of split files: 1, prefetch: false
+"
+1740753285725,"INFO	2025-02-28T14:34:45,725	35542	org.apache.spark.sql.execution.FileSourceScanExec	[Thread-7]	60	relation: None, fileSplitsInPartitionHistogram: Vector((1 fileSplits,1))
+"
+1740753285736,"INFO	2025-02-28T14:34:45,736	35553	org.apache.spark.SparkContext	[Thread-7]	60	Starting job: showString at NativeMethodAccessorImpl.java:0
+"
+1740753285737,"INFO	2025-02-28T14:34:45,737	35554	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Got job 3 (showString at NativeMethodAccessorImpl.java:0) with 1 output partitions
+"
+1740753285737,"INFO	2025-02-28T14:34:45,737	35554	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Final stage: ResultStage 3 (showString at NativeMethodAccessorImpl.java:0)
+"
+1740753285737,"INFO	2025-02-28T14:34:45,737	35554	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Parents of final stage: List()
+"
+1740753285738,"INFO	2025-02-28T14:34:45,738	35555	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Missing parents: List()
+"
+1740753285738,"INFO	2025-02-28T14:34:45,738	35555	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting ResultStage 3 (MapPartitionsRDD[27] at showString at NativeMethodAccessorImpl.java:0), which has no missing parents
+"
+1740753285743,"INFO	2025-02-28T14:34:45,742	35559	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_11 stored as values in memory (estimated size 21.3 KiB, free 11.8 GiB)
+"
+1740753285745,"INFO	2025-02-28T14:34:45,745	35562	org.apache.spark.storage.memory.MemoryStore	[dag-scheduler-event-loop]	60	Block broadcast_11_piece0 stored as bytes in memory (estimated size 9.7 KiB, actual size: 9.7 KiB, free 11.8 GiB)
+"
+1740753285745,"INFO	2025-02-28T14:34:45,745	35562	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_11_piece0 in memory on 172.39.19.99:42393 (size: 9.7 KiB, free: 11.8 GiB)
+"
+1740753285746,"INFO	2025-02-28T14:34:45,746	35563	org.apache.spark.SparkContext	[dag-scheduler-event-loop]	60	Created broadcast 11 from broadcast at DAGScheduler.scala:1664
+"
+1740753285747,"INFO	2025-02-28T14:34:45,747	35564	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Submitting 1 missing tasks from ResultStage 3 (MapPartitionsRDD[27] at showString at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+"
+1740753285747,"INFO	2025-02-28T14:34:45,747	35564	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Adding task set 3.0 with 1 tasks resource profile 0
+"
+1740753285749,"INFO	2025-02-28T14:34:45,748	35565	org.apache.spark.scheduler.TaskSetManager	[dispatcher-CoarseGrainedScheduler]	60	Starting task 0.0 in stage 3.0 (TID 3) (172.35.135.69, executor 1, partition 0, ANY, 10436 bytes) 
+"
+1740753285762,"INFO	2025-02-28T14:34:45,762	35579	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_11_piece0 in memory on 172.35.135.69:39689 (size: 9.7 KiB, free: 11.8 GiB)
+"
+1740753285814,"INFO	2025-02-28T14:34:45,813	35630	org.apache.spark.storage.BlockManagerInfo	[dispatcher-BlockManagerMaster]	60	Added broadcast_10_piece0 in memory on 172.35.135.69:39689 (size: 57.3 KiB, free: 11.8 GiB)
+"
+1740753285884,"INFO	2025-02-28T14:34:45,884	35701	org.apache.spark.scheduler.TaskSetManager	[task-result-getter-3]	60	Finished task 0.0 in stage 3.0 (TID 3) in 135 ms on 172.35.135.69 (executor 1) (1/1)
+"
+1740753285884,"INFO	2025-02-28T14:34:45,884	35701	org.apache.spark.scheduler.TaskSchedulerImpl	[task-result-getter-3]	60	Removed TaskSet 3.0, whose tasks have all completed, from pool 
+"
+1740753285885,"INFO	2025-02-28T14:34:45,885	35702	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	ResultStage 3 (showString at NativeMethodAccessorImpl.java:0) finished in 0.146 s
+"
+1740753285885,"INFO	2025-02-28T14:34:45,885	35702	org.apache.spark.scheduler.DAGScheduler	[dag-scheduler-event-loop]	60	Job 3 is finished. Cancelling potential speculative or zombie tasks for this job
+"
+1740753285885,"INFO	2025-02-28T14:34:45,885	35702	org.apache.spark.scheduler.TaskSchedulerImpl	[dag-scheduler-event-loop]	60	Killing all running tasks in stage 3: Stage finished
+"
+1740753285886,"INFO	2025-02-28T14:34:45,886	35703	org.apache.spark.scheduler.DAGScheduler	[Thread-7]	60	Job 3 finished: showString at NativeMethodAccessorImpl.java:0, took 0.149652 s
+"
+1740753285904,"INFO	2025-02-28T14:34:45,904	35721	org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator	[Thread-7]	60	Code generated in 13.544571 ms
+"
+1740753285906,"INFO	2025-02-28T14:34:45,906	35723	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Generating and posting SparkListenerSQLExecutionObfuscatedInfo...
+"
+1740753285906,"INFO	2025-02-28T14:34:45,906	35723	org.apache.spark.sql.execution.SQLExecution	[Thread-7]	60	Posted SparkListenerSQLExecutionObfuscatedInfo in 0 ms
+"
+1740753286297,"ERROR	2025-02-28T14:34:46,297	36114	com.amazonaws.services.glue.ProcessLauncher	[main]	76	Error from Python:Traceback (most recent call last):
+  File ""<frozen runpy>"", line 291, in run_path
+  File ""<frozen runpy>"", line 98, in _run_module_code
+  File ""<frozen runpy>"", line 88, in _run_code
+  File ""/tmp/glue-job-11910219073454218546/Hackathon-Test-Glue-2.py"", line 56, in <module>
+    df_final = df1_common.join(df2_common, [common_columns], how=""left"")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File ""/usr/lib/spark/python/lib/pyspark.zip/pyspark/sql/dataframe.py"", line 2482, in join
+    assert isinstance(on[0], Column), ""on should be Column or list of Column""
+AssertionError: on should be Column or list of Column
+"
+1740753286323,"ERROR	2025-02-28T14:34:46,323	36140	com.amazonaws.services.glueexceptionanalysis.GlueExceptionAnalysisListener	[main]	9	[Glue Exception Analysis] {""Event"":""GlueETLJobExceptionEvent"",""Timestamp"":1740753286322,""Failure Reason"":""Traceback (most recent call last):
+  File \""<frozen runpy>\"", line 291, in run_path
+  File \""<frozen runpy>\"", line 98, in _run_module_code
+  File \""<frozen runpy>\"", line 88, in _run_code
+  File \""/tmp/glue-job-11910219073454218546/Hackathon-Test-Glue-2.py\"", line 56, in <module>
+    df_final = df1_common.join(df2_common, [common_columns], how=\""left\"")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File \""/usr/lib/spark/python/lib/pyspark.zip/pyspark/sql/dataframe.py\"", line 2482, in join
+    assert isinstance(on[0], Column), \""on should be Column or list of Column\""
+AssertionError: on should be Column or list of Column"",""Stack Trace"":[{""Declaring Class"":""join"",""Method Name"":""assert isinstance(on[0], Column), \""on should be Column or list of Column\"
+1740753286324,""""",""File Name"":""/usr/lib/spark/python/lib/pyspark.zip/pyspark/sql/dataframe.py"",""Line Number"":2482},{""Declaring Class"":""<module>"",""Method Name"":""df_final = df1_common.join(df2_common, [common_columns], how=\""left\"")"",""File Name"":""/tmp/glue-job-11910219073454218546/Hackathon-Test-Glue-2.py"",""Line Number"":56}],""Last Executed Line number"":56,""script"":""Hackathon-Test-Glue-2.py""}
+"
+1740753286324,"ERROR	2025-02-28T14:34:46,323	36140	com.amazonaws.services.glueexceptionanalysis.GlueExceptionAnalysisListener	[main]	9	[Glue Exception Analysis] Last Executed Line number from script Hackathon-Test-Glue-2.py: 56
+"
+1740753286325,"INFO	2025-02-28T14:34:46,325	36142	com.amazonaws.services.glue.ProcessLauncher	[main]	60	postprocessing
+"
+1740753286325,"INFO	2025-02-28T14:34:46,325	36142	com.amazonaws.services.glue.ProcessLauncher	[main]	633	Enhance failure reason and emit cloudwatch error metrics.
+"
+1740753286340,"INFO	2025-02-28T14:34:46,340	36157	com.amazonaws.services.glue.ProcessLauncher	[main]	659	ExceptionErrorMessage failureReason: AssertionError: on should be Column or list of Column
+"
+1740753286357,"INFO	2025-02-28T14:34:46,357	36174	com.amazonaws.services.glue.ProcessLauncher	[main]	661	Error Category: UNCLASSIFIED_ERROR
+"
+1740753286358,"INFO	2025-02-28T14:34:46,357	36174	com.amazonaws.services.glue.ProcessLauncher	[main]	686	enhancedFailureReason: Error Category: UNCLASSIFIED_ERROR; Failed Line Number: 56; AssertionError: on should be Column or list of Column
+"
+1740753286373,"INFO	2025-02-28T14:34:46,361	36178	com.amazonaws.services.glue.CloudWatchMetricsEmitter	[main]	34	Emit job error metrics
+"
+1740753286514,"INFO	2025-02-28T14:34:46,514	36331	com.amazonaws.services.glue.CloudWatchMetricsEmitter	[main]	34	Emit job error metrics
+"
+1740753286527,"INFO	2025-02-28T14:34:46,526	36343	com.amazonaws.services.glue.LogPusher	[main]	60	stopping
+"
+1740753286527,"java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+"
+1740753286527,"	at com.amazonaws.services.glue.SparkProcessLauncherPlugin.invoke(ProcessLauncher.scala:53)
+	at com.amazonaws.services.glue.SparkProcessLauncherPlugin.invoke$(ProcessLauncher.scala:53)
+	at com.amazonaws.services.glue.ProcessLauncher$$anon$1.invoke(ProcessLauncher.scala:196)
+	at com.amazonaws.services.glue.ProcessLauncher.launch(ProcessLauncher.scala:401)
+	at com.amazonaws.services.glue.ProcessLauncher$.main(ProcessLauncher.scala:33)
+"
+1740753286527,"	at com.amazonaws.services.glue.ProcessLauncher.main(ProcessLauncher.scala)
+"
+1740753286528,"Caused by: org.apache.spark.SparkUserAppException: User application exited with 1
+	at org.apache.spark.deploy.PythonRunner$.main(PythonRunner.scala:112)
+	at org.apache.spark.deploy.PythonRunner.main(PythonRunner.scala)
+	... 10 more
+"
+1740753286529,"INFO	2025-02-28T14:34:46,529	36346	org.apache.spark.SparkContext	[shutdown-hook-0]	60	Invoking stop() from shutdown hook
+"
+1740753286530,"INFO	2025-02-28T14:34:46,530	36347	org.apache.spark.SparkContext	[shutdown-hook-0]	60	SparkContext is stopping with exitCode 0.
+"
+1740753286535,"INFO	2025-02-28T14:34:46,534	36351	org.apache.spark.scheduler.cluster.glue.JESSchedulerBackend	[shutdown-hook-0]	60	Stopping JES Scheduler Backend.
+"
+1740753286536,"INFO	2025-02-28T14:34:46,535	36352	com.amazonaws.services.glueexceptionanalysis.EventLogFileWriter	[spark-listener-group-shared]	70	Logs, events processed and insights are written to file /tmp/glue-exception-analysis-logs/spark-application-1740753261892
+"
+1740753286536,"INFO	2025-02-28T14:34:46,536	36353	org.apache.spark.scheduler.cluster.glue.JESSchedulerBackend	[shutdown-hook-0]	60	Shutting down all executors
+"
+1740753286537,"INFO	2025-02-28T14:34:46,537	36354	org.apache.spark.scheduler.cluster.glue.JESSchedulerBackend$JESAsSchedulerBackendEndpoint	[dispatcher-CoarseGrainedScheduler]	60	Asking each executor to shut down
+"
+1740753286548,"INFO	2025-02-28T14:34:46,547	36364	org.apache.spark.MapOutputTrackerMasterEndpoint	[dispatcher-event-loop-6]	60	MapOutputTrackerMasterEndpoint stopped!
+"
+1740753286559,"INFO	2025-02-28T14:34:46,558	36375	org.apache.spark.storage.memory.MemoryStore	[shutdown-hook-0]	60	MemoryStore cleared
+"
+1740753286559,"INFO	2025-02-28T14:34:46,559	36376	org.apache.spark.storage.BlockManager	[shutdown-hook-0]	60	BlockManager stopped
+"
+1740753286562,"INFO	2025-02-28T14:34:46,562	36379	org.apache.spark.storage.BlockManagerMaster	[shutdown-hook-0]	60	BlockManagerMaster stopped
+"
+1740753286946,"INFO	2025-02-28T14:34:46,945	36762	org.apache.spark.scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint	[dispatcher-event-loop-3]	60	OutputCommitCoordinator stopped!
+"
+1740753286991,"INFO	2025-02-28T14:34:46,991	36808	org.apache.spark.SparkContext	[shutdown-hook-0]	60	Successfully stopped SparkContext
+"
+1740753286992,"INFO	2025-02-28T14:34:46,992	36809	com.amazonaws.services.glue.LogPusher	[shutdown-hook-0]	60	uploading file:///var/log/spark/apps to s3://aws-glue-assets-842675997893-us-east-1/sparkHistoryLogs/
+"
+1740753287018,"ERROR	2025-02-28T14:34:47,017	36834	com.amazonaws.services.glue.LogPusher	[shutdown-hook-0]	97	com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: WY4FWAZQR09D38J0; S3 Extended Request ID: 2OhVXxWnTanSwP7fl4wyk3iXD7PxNBEPrFzRqSxSVuDYWrwK13MqrgTX+fjacpexbBTrWOEDXrg=; Proxy: null), S3 Extended Request ID: 2OhVXxWnTanSwP7fl4wyk3iXD7PxNBEPrFzRqSxSVuDYWrwK13MqrgTX+fjacpexbBTrWOEDXrg=
+java.io.IOException: com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: WY4FWAZQR09D38J0; S3 Extended Request ID: 2OhVXxWnTanSwP7fl4wyk3iXD7PxNBEPrFzRqSxSVuDYWrwK13MqrgTX+fjacpexbBTrWOEDXrg=; Proxy: null), S3 Extended Request ID: 2OhVXxWnTanSwP7fl4wyk3iXD7PxNBEPrFzRqSxSVuDYWrwK13MqrgTX+fjacpexbBTrWOEDXrg=
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets"
+1740753287018,"3tNativeFileSystemStore.list(Jets3tNativeFileSystemStore.java:429) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets3tNativeFileSystemStore.isFolderUsingFolderObject(Jets3tNativeFileSystemStore.java:255) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.Jets3tNativeFileSystemStore.isFolder(Jets3tNativeFileSystemStore.java:218) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3n.S3NativeFileSystem.getFileStatus(S3NativeFileSystem.java:554) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at org.apache.hadoop.fs.FileUtil.checkDest(FileUtil.java:611) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileUtil.copy(FileUtil.java:468) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileUtil.copy(FileUtil.java:432) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:2647) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileSystem.copyFromLocalFile"
+1740753287087,"(FileSystem.java:2613) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at org.apache.hadoop.fs.FileSystem.copyFromLocalFile(FileSystem.java:2575) ~[hadoop-client-api-3.4.0-amzn-1.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.EmrFileSystem.copyFromLocalFile(EmrFileSystem.java:518) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazonaws.services.glue.LogPusher.upload(LogPusher.scala:72) ~[wLYyfB-aws-glue-di-package-5.0.351.jar:?]
+	at org.apache.spark.util.ShutdownHookManagerWrapper$.$anonfun$addLogPusherHook$2(ShutdownHookManagerWrapper.scala:9) ~[wLYyfB-aws-glue-di-package-5.0.351.jar:3.5.2-amzn-1]
+	at org.apache.spark.util.ShutdownHookManagerWrapper$.$anonfun$addLogPusherHook$2$adapted(ShutdownHookManagerWrapper.scala:9) ~[wLYyfB-aws-glue-di-package-5.0.351.jar:3.5.2-amzn-1]
+	at scala.Option.foreach(Option.scala:407) ~[scala-library-2.12.18.jar:?]
+	at org.apache.spark.util.ShutdownHookManagerWrapper$.$anonfun$addLogPusherHook$1(ShutdownHookManagerWrapper.scala:9) ~[wLYyfB-aws-glue-di-package-5.0.351.jar:3.5.2-amzn-1]
+	at o"
+1740753287087,"rg.apache.spark.util.SparkShutdownHook.run(ShutdownHookManager.scala:214) ~[spark-core_2.12-3.5.2-amzn-1.jar:3.5.2-amzn-1]
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$2(ShutdownHookManager.scala:188) ~[spark-core_2.12-3.5.2-amzn-1.jar:3.5.2-amzn-1]
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23) ~[scala-library-2.12.18.jar:?]
+	at org.apache.spark.util.Utils$.logUncaughtExceptions(Utils.scala:1971) ~[spark-core_2.12-3.5.2-amzn-1.jar:3.5.2-amzn-1]
+	at org.apache.spark.util.SparkShutdownHookManager.$anonfun$runAll$1(ShutdownHookManager.scala:188) ~[spark-core_2.12-3.5.2-amzn-1.jar:3.5.2-amzn-1]
+	at scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23) [scala-library-2.12.18.jar:?]
+	at scala.util.Try$.apply(Try.scala:213) [scala-library-2.12.18.jar:?]
+	at org.apache.spark.util.SparkShutdownHookManager.runAll(ShutdownHookManager.scala:188) [spark-core_2.12-3.5.2-amzn-1.jar:3.5.2-amzn-1]
+	at org.apache.spark.util.SparkShutdownHookManager$$anon$2.run"
+1740753287087,"(ShutdownHookManager.scala:178) [spark-core_2.12-3.5.2-amzn-1.jar:3.5.2-amzn-1]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:840) [?:?]
+Caused by: com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucket; Request ID: WY4FWAZQR09D38J0; S3 Extended Request ID: 2OhVXxWnTanSwP7fl4wyk3iXD7PxNBEPrFzRqSxSVuDYWrwK13MqrgTX+fjacpexbBTrWOEDXrg=; Proxy: null)
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.handleErrorResponse(AmazonHttpClient.java:1879) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amaz"
+1740753287087,"onaws.http.AmazonHttpClient$RequestExecutor.handleServiceErrorResponse(AmazonHttpClient.java:1418) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeOneRequest(AmazonHttpClient.java:1387) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeHelper(AmazonHttpClient.java:1157) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.doExecute(AmazonHttpClient.java:814) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.executeWithTimer(AmazonHttpClient.java:781) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutor.execute(AmazonHttpClient.java:755) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded"
+1740753287087,".com.amazonaws.http.AmazonHttpClient$RequestExecutor.access$500(AmazonHttpClient.java:715) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient$RequestExecutionBuilderImpl.execute(AmazonHttpClient.java:697) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:561) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.http.AmazonHttpClient.execute(AmazonHttpClient.java:541) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5558) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.AmazonS3Client.invoke(AmazonS3Client.java:5505) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.shaded.com.amazonaws.services.s3.AmazonS3Client.listObjectsV2(AmazonS3Client.java:1002) ~"
+1740753287087,"[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.call.ListObjectsV2Call.perform(ListObjectsV2Call.java:26) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.call.ListObjectsV2Call.perform(ListObjectsV2Call.java:12) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.executor.GlobalS3Executor$CallPerformer.call(GlobalS3Executor.java:114) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.executor.GlobalS3Executor.execute(GlobalS3Executor.java:141) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.AmazonS3LiteClient.invoke(AmazonS3LiteClient.java:196) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.AmazonS3LiteClient.invoke(AmazonS3LiteClient.java:191) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazon.ws.emr.hadoop.fs.s3.lite.AmazonS3LiteClient.listObjectsV2(AmazonS3LiteClient.java:75) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	at com.amazo"
+1740753287087,"n.ws.emr.hadoop.fs.s3n.Jets3tNativeFileSystemStore.list(Jets3tNativeFileSystemStore.java:420) ~[emrfs-hadoop-assembly-2.66.0.jar:?]
+	... 29 more
+"
+1740753287087,"INFO	2025-02-28T14:34:47,018	36835	org.apache.spark.util.ShutdownHookManager	[shutdown-hook-0]	60	Shutdown hook called
+"
+1740753287087,"INFO	2025-02-28T14:34:47,018	36835	org.apache.spark.util.ShutdownHookManager	[shutdown-hook-0]	60	Deleting directory /tmp/spark-235abd6e-b1b5-46c7-83e2-770e22341281/pyspark-2196308c-f6dc-483f-8fc4-b12fd0ff502c
+"
+1740753287087,"INFO	2025-02-28T14:34:47,023	36840	org.apache.spark.util.ShutdownHookManager	[shutdown-hook-0]	60	Deleting directory /tmp/spark-235abd6e-b1b5-46c7-83e2-770e22341281
+"
+1740753287088,"INFO	2025-02-28T14:34:47,027	36844	org.apache.spark.util.ShutdownHookManager	[shutdown-hook-0]	60	Deleting directory /tmp/spark-9be1cee7-0811-42a5-8ef4-b76ad25cf28c
+"
