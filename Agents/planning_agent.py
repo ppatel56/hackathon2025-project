@@ -181,10 +181,7 @@ def construct_plan_graph():
 if __name__ == "__main__":
     import asyncio
 
-    objective = "analyze the error log for glue job 'StockDataTransformation' that occured on February 28, 2025, and provide a solution to it based on the glue job code and the web"
-
-    objective = "how many cloudwtahc logs do we have?"
-
+    objective = "please come up with a solution to the latest glue job error for StockDataTransformation job. Also, compare with solutions from the web to enhance your proposed solution"
     config = {"recursion_limit": 50}
     inputs = {"input": objective}
     app = construct_plan_graph()
