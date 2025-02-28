@@ -1,0 +1,92 @@
+# StockDataTransformation AWS Glue Job Documentation
+
+## Overview
+
+This AWS Glue job, named "StockDataTransformation", processes stock market data from a CSV file stored in S3, performs various transformations, and writes the results back to S3 in Parquet format.
+
+## Job Details
+
+- **Job Name**: StockDataTransformation
+- **Type**: PySpark
+- **Glue Version**: 3.0
+- **Worker Type**: G.1X
+- **Number of Workers**: 5
+- **Max Concurrency**: 1
+
+## Input and Output
+
+- **Input**: CSV file in S3 (s3://input-bucket/stock_data.csv)
+- **Output**: Parquet files in S3 (s3://output-bucket/transformed_stock_data)
+
+## Transformations
+
+1. Cast 'price' column to double
+2. Cast 'volume' column to integer
+3. Calculate 'market_cap' as price * volume, rounded to 2 decimal places
+4. Compute average price per stock symbol
+
+## Deployment Instructions
+
+1. Package the script:
+   ```
+   zip -r StockDataTransformation.zip StockDataTransformation.py
+   ```
+
+2. Upload to designated S3 bucket:
+   ```
+   aws s3 cp StockDataTransformation.zip s3://company-glue-scripts/StockDataTransformation/
+   ```
+
+3. Create/Update the Glue job using CloudFormation:
+   - Use the `glue-job-template.yaml` in the `infrastructure/` directory
+   - Update the script location in the template
+   - Run:
+     ```
+     aws cloudformation deploy --template-file infrastructure/glue-job-template.yaml --stack-name stock-data-transformation-job --parameter-overrides Environment=prod
+     ```
+
+## Execution
+
+To run the job manually:
+
+```
+aws glue start-job-run --job-name StockDataTransformation
+```
+
+## Monitoring
+
+- CloudWatch Logs: /aws-glue/jobs/output/StockDataTransformation
+- CloudWatch Metrics: Glue namespace, filter by JobName
+
+## Best Practices
+
+1. Use company-wide Glue job naming convention: `__`
+2. Implement error handling and logging
+3. Use job bookmarks to handle incremental data processing
+4. Optimize for performance:
+   - Partition data appropriately
+   - Use pushdown predicates when possible
+5. Follow the principle of least privilege for IAM roles
+6. Use parameter store for sensitive information
+7. Implement data quality checks before and after transformation
+
+## Code Review Checklist
+
+- [ ] PySpark best practices followed
+- [ ] Error handling implemented
+- [ ] Logging statements added
+- [ ] Code commented appropriately
+- [ ] Variable names are descriptive
+- [ ] Transformations are efficient
+- [ ] Job parameters are configurable
+
+## Troubleshooting
+
+1. Check CloudWatch Logs for error messages
+2. Verify input data schema hasn't changed
+3. Ensure IAM roles have necessary permissions
+4. Check S3 bucket permissions
+
+## Contact
+
+For issues or enhancements, contact the Data Engineering team at data-engineering@company.com
