@@ -18,7 +18,7 @@ from langgraph.graph.message import AnyMessage, add_messages
 import os
 
 # Define the SQLite database file
-db_file = os.path.join(os.path.dirname(__file__), 'aws_logs.db')
+db_file = os.path.join(os.path.dirname(__file__), '..','aws_logs.db')
 
 # Ensure the database file exists
 if not os.path.exists(db_file):
@@ -73,12 +73,10 @@ def db_query_tool(query: str) -> str:
     If an error is returned, rewrite the query, check the query, and try again.
     """
     result = db.run_no_throw(query)
-    if not result:
-        return "Error: Query failed. Please rewrite your query and try again."
     return result
 
 
-print(db_query_tool.invoke("SELECT * FROM lambda_logs LIMIT 10;"))
+# print(db_query_tool.invoke("SELECT * FROM lambda_logs LIMIT 10;"))
 
 #chatprompt template
 
@@ -92,6 +90,7 @@ Double check the SQLite query for common mistakes, including:
 - Using the correct number of arguments for functions
 - Casting to the correct data type
 - Using the proper columns for joins
+- Searching the timestamp column with a date string in the glue_logs table. You shoul search the message column instead.
 
 If there are any of the above mistakes, rewrite the query. If there are no mistakes, just reproduce the original query.
 
@@ -136,19 +135,23 @@ def model_check_query(state: State) -> dict[str, list[AIMessage]]:
     return {"messages": [query_check.invoke({"messages": [state["messages"][-1]]})]}
 
 
-query_gen_system = """You are a SQL expert with a strong attention to detail.
+query_gen_system = """You are a SQL expert for querying glue logs with a strong attention to detail.
 
-    You can define SQL queries, analyze queries results and interpretate query results to response an answer.
+    You can define SQL queries, analyze queries results and interpretate query results to respond with an answer.
 
     Read the messages bellow and identify the user question, table schemas, query statement and query result, or error if they exist.
 
     1. If there's not any query result that make sense to answer the question, create a syntactically correct SQLite query to answer the user question. DO NOT make any DML statements (INSERT, UPDATE, DELETE, DROP etc.) to the database.
 
-    2. If you create a query, response ONLY the query statement. For example, "SELECT id, name FROM pets;"
+    2. If you create a query, respond ONLY with the query statement. For example, "SELECT id, name FROM pets;"
 
     3. If a query was already executed, but there was an error. Response with the same error message you found. For example: "Error: Pets table doesn't exist"
 
     4. If a query was already executed successfully interpretate the response and answer the question following this pattern: Answer: <<question answer>>. For example: "Answer: There three cats registered as adopted"
+    
+    5. If you create a query, 
+
+    DO NOT ever respond with a question. Respond only with the query statement, error message or answer.
 """
 
 
@@ -223,14 +226,16 @@ def create_sql_agent():
     return app
 
 if __name__ == "__main__":
-    app = create_sql_agent()
-    # for event in app.stream(
-    #     {"messages": [("user", "how many cloudwatch logs do we have related to lambda?")]}
-    # ):
-    #     print(event)
+    # print(db_query_tool.invoke("SELECT message FROM glue_logs WHERE message LIKE '%2023-01-01%'"))
     
-    messages = app.invoke(
-        {"messages": [("user", "how many cloudwatch logs do we have?")]}
-    )
-    print("===")
-    print(messages['messages'][-1].content)
+    app = create_sql_agent()
+    for event in app.stream(
+        {"messages": [("user", "What error did glue job StockDataTransformation encounter on Feb 28, 2025?")]}
+    ):
+        print(event)
+    
+    # messages = app.invoke(
+    #     {"messages": [("user", "What error did glue job Hackathon-Test-Glue-2 encounter on 2023-01-01? Also what part of the code caused the error?")]}
+    # )
+    # print("===")
+    # print(messages['messages'][-1].content)

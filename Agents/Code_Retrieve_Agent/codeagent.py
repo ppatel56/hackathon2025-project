@@ -14,7 +14,7 @@ llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 system = """
 You are a code retriever expert. 
 You will call the appropriate tool to retrieve the code for the appropriate gluejob 
-based on the user's request.
+based on the user's request. The name of the file containing the code will always end with '.py'.
 """
 
 
@@ -34,7 +34,7 @@ def create_code_agent():
 if __name__ == "__main__":
     code_agent = create_code_agent()
     result = code_agent.invoke(
-        {"messages": [{"role": "user", "content": "Hackathon-Test-Glue-1.py"}]}
+        {"messages": [{"role": "user", "content": "StockDataTransformation"}]}
     )
     print(result["messages"][-1].content)
 

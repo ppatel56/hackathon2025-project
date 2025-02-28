@@ -27,38 +27,12 @@ members = ['Query_Internal_Docs_and_web', 'Query_Cloudwatch', 'Retrieve_App_Code
 # members = ['Query_Cloudwatch'] #, 'Query_Cloudwatch', 'Retrieve_App_Code']
 
 # Decides when the work is completed
-options = members + ['FINISH']
+options = members
 
 sup_system_prompt = f"""
-You are an AWS Development Supervisor, tasked with managing a conversation between the following workers: {options}.
-
-Given the following user request, respond with the worker to act next. Respond with FINISH when the question has been answered.
-
-If the user specifically asks you where to search for the information, assign the specific worker to answer the questions.
-1. If the user's question topic relates to cloudwatch logs or errors, assign the Query_Cloudwatch worker.
-2. If the user's question topic relates to code, assign the Retrieve_App_Code worker.
-3. If the user's question topic relates to internal documentation or web search, assign the Query_Internal_Docs_and_web worker.
-4. Otherwise, assign the Query_Internal_Docs_and_web worker.
-
-The selected worker will perform a task and respond with their results and status. Again, you must select one worker to respond.
-
-If the question made by the user does not need an answer from your workers, respond with FINISH.
-
-Once the question has been answered by either you or your workers, finish by responding with FINISH.
-
-Examples:
-1. User: How many cloudwatch logs do you have access to?
-   Worker: Answer: There are 10 cloudwatch logs in the Glue logs and 10 in the Lambda logs, totaling 20 logs.
-   Response: FINISH
-
-2. User: Provide the code for one of our glue jobs.
-   Worker: Here is the code for the glue job: ...
-   Response: FINISH
-
-3. User: What error did glue job 'X' encounter on 2023-01-01? Also what part of the code caused the error?
-    Query_Cloudwatch worker: The glue job 'X' encountered error 'Y' on 2023-01-01.
-    Retrieve_App_Code worker: This is the code for glue job 'X'
-    Response: FINISH
+You are a task router assistant.
+Route to the appropriate worker to complete the step in the user request. 
+Available workers to route to: {members}.
     
 """
 
@@ -79,7 +53,6 @@ class Router(TypedDict):
     """Worker to route to next. If no workers needed, route to FINISH."""
 
     next: Literal[*options]
-    question_answer: str
 
 class CRagQuestion(BaseModel):
     """Question to ask the CRAG agent."""
@@ -96,25 +69,17 @@ class State(MessagesState):
     final_response: str
     
 
-def supervisor_node(state: State) -> Command[Literal[*members, "__end__"]]:
+def supervisor_node(state: State) -> Command[Literal[*members]]:
     print("-----------------")
     print("supervisor_node")
     messages = [
         {"role": "system", "content": sup_system_prompt},
     ] + state["messages"]
     response = llm.with_structured_output(Router).invoke(messages)
-    print(response)
+    print("Next: ", response["next"])
     goto = response["next"]
-    final_response = ""
-    if goto == "FINISH":
-        goto = END
-        messages = [
-            {"role": "system", "content": synthesizer_prompt},
-            ] + state["messages"]
-        print("Messages for final_response: ", messages)
-        final_response = llm.invoke(messages).content
 
-    return Command(goto=goto, update={"next": goto, "final_response": final_response})
+    return Command(goto=goto, update={"next": goto})
 
 def construct_super_graph():
     #define agents (subgraphs)
@@ -145,7 +110,7 @@ def construct_super_graph():
                 "documents": updated_documents,
                 "links": updated_links
             },
-            goto="supervisor",
+            goto=END,
         )
     
     def sql_node(state: State) -> Command[Literal[ "supervisor"]]:
@@ -158,7 +123,7 @@ def construct_super_graph():
                     HumanMessage(content=result["messages"][-1].content, name="sql")
                 ]
             },
-            goto="supervisor",
+            goto=END,
         )
     
     def code_node(state: State) -> Command[Literal[ "supervisor"]]:
@@ -171,7 +136,7 @@ def construct_super_graph():
                     HumanMessage(content=result["messages"][-1].content, name="coder")
                 ]
             },
-            goto="supervisor",
+            goto=END,
         )
     
     # Define a new graph
@@ -193,24 +158,18 @@ if __name__ == "__main__":
     # ):
     #     print(event)
 
-    test_prompt_1 = "How many cloudwatch logs do we have?"
-    test_prompt_2 = "Give me the code for glue job Hackathon-Test-Glue-1.py"
-    test_prompt_3 = "What is the pipeline architecture for facebook?"
-    test_prompt_3 = "Compare facebooks pipeline architecture to my team's pipeline architecture please."
+    plan_str = """Step 1: Query_Cloudwatch to retrieve the error logs for the Glue job 'StockDataTransformation' on February 28, 2025. 
+      Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
+      Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
+      Step 4: Based on the error analysis and potential solutions, modify the retrieved application code to fix the identified issue."""
+    task = "Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring."
+    test_prompt = f"""For the following plan:
+{plan_str}\n\nYou are tasked with executing step {task}."""
     
     messages = graph.invoke(
-        {"messages": [{"role": "user", "content": test_prompt_3}]}
+        {"messages": [{"role": "user", "content": test_prompt}]}
     )
-    print("===")
-    print(messages['final_response'])
-    #if links and documents keys are present, print them
-    if "documents" in messages:
-        print("===")
-        print(messages['documents'])
-    if "links" in messages:
-        print("===")
-        print(messages['links'])
-    print("===")
+    print(messages)
 
 
 

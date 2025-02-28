@@ -223,7 +223,7 @@ def web_search(state):
 
     # Web search
     docs = web_search_tool.invoke({"query": question})
-    print(f"docs:\n{docs}")
+    # print(f"docs:\n{docs}")
     web_results = "\n".join([d["content"] for d in docs])
     web_links = [d["url"] for d in docs]
     web_results = Document(
