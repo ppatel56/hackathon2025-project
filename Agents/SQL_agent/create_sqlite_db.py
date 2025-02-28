@@ -1,8 +1,9 @@
 import sqlite3
 import csv
+import os
 
 # Define the SQLite database file
-db_file = "aws_logs.db"
+db_file = os.path.join(os.path.dirname(__file__),'..','aws_logs.db')
 
 # Connect to the SQLite database (or create it if it doesn't exist)
 conn = sqlite3.connect(db_file)
@@ -12,25 +13,9 @@ cursor = conn.cursor()
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS glue_logs (
     timestamp TEXT,
-    service TEXT,
-    log_level TEXT,
-    message TEXT,
-    request_id TEXT,
-    error_code TEXT,
-    details TEXT
-)
-''')
-
-# Create the Lambda logs table
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS lambda_logs (
-    timestamp TEXT,
-    service TEXT,
-    log_level TEXT,
-    message TEXT,
-    request_id TEXT,
-    error_code TEXT,
-    details TEXT
+    jobname TEXT,
+    loglevel TEXT,
+    message TEXT
 )
 ''')
 
@@ -41,15 +26,16 @@ def insert_csv_data(csv_file, table_name):
         next(reader)  # Skip the header row
         for row in reader:
             cursor.execute(f'''
-            INSERT INTO {table_name} (timestamp, service, log_level, message, request_id, error_code, details)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO {table_name} (timestamp,jobname,loglevel,message)
+            VALUES (?, ?, ?, ?)
             ''', row)
 
 # Insert data from mock_glue_logs.csv into the glue_logs table
-insert_csv_data("../data/mock_glue_logs.csv", "glue_logs")
+local_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'data'))
+# for i in range(1, 5):
+#     insert_csv_data(f"{local_dir}/log-events-viewer-result-{i}.csv", "glue_logs")
 
-# Insert data from mock_lambda_logs.csv into the lambda_logs table
-insert_csv_data("../data/mock_lambda_logs.csv", "lambda_logs")
+insert_csv_data(f"{local_dir}/sample_glue_logs.csv", "glue_logs")
 
 # Commit the changes and close the connection
 conn.commit()

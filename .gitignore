@@ -1,1 +1,11 @@
-.env
+# Ignore __pycache__ directories
+__pycache__/
+*.py[cod]
+
+# Ignore any file containing "credential" in its name
+*cred*
+
+# Optional: Ignore common Python virtual environment names
+venv/
+env/
+.venv/
