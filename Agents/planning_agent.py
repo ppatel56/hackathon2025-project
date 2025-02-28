@@ -55,6 +55,12 @@ planner_prompt = ChatPromptTemplate.from_messages(
         ...
         Final Step: [Analysis of previous step completions leading to final answer]
 
+        Example Plan:
+        Step 1: Query_Cloudwatch to retrieve the error logs for the Glue job 'StockDataTransformation' on February 28, 2025. 
+        Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
+        Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
+        Step 4: Based on the queried error logs, the queried documentation, and the retirved application code, produce a proposed solution to the application error.
+
         Remember: Each step should be essential for reaching the solution. Eliminate any superfluous steps that don't contribute directly to achieving the objective."""
         ),
         ("placeholder", "{messages}"),
@@ -69,7 +75,9 @@ planner = planner_prompt | ChatOpenAI(
 class Response(BaseModel):
     """Response to user."""
 
-    response: str
+    response: str = Field(
+        description="Response for final step: Analysis of previous step completions and proposed solution. Do not include an updated plan here."
+    )
 
 
 class Act(BaseModel):
@@ -99,9 +107,23 @@ Instructions:
 1. Review the objective, available task workers, original plan, and completed steps.
 2. Create or update the plan using ONLY the specified task workers.
 3. Each step must be actionable and executed by one of the task workers.
-4. Do not include any steps that have already been completed.
-5. Ensure the plan leads logically to a final answer or solution.
-6. If you're at the final step, provide the proposed solution based on the completed steps.
+4. Do not include any steps that include task workers that have already been executed.
+5. Do not include any steps that have already been completed.
+6. Ensure the plan leads logically to a final answer or solution.
+7. If you're at the final step, provide the proposed solution based on the completed steps.
+
+Plan Format:
+Step 1: [Task Worker] - [Specific action and expected outcome]
+Step 2: [Task Worker] - [Specific action and expected outcome]
+...
+Final Step: [Analysis of previous step completions leading to final answer]
+
+Example Plan:
+Step 1: Query_Cloudwatch to retrieve the error logs for the Glue job 'StockDataTransformation' on February 28, 2025. 
+Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
+Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
+Step 4: Based on the queried error logs, the queried documentation, and the retirved application code, produce a proposed solution to the application error.
+
 
 Note: Ensure each step is necessary and directly contributes to achieving the objective. Avoid superfluous steps or those not utilizing the specified task workers."""
 )
@@ -181,10 +203,7 @@ def construct_plan_graph():
 if __name__ == "__main__":
     import asyncio
 
-    objective = "analyze the error log for glue job 'StockDataTransformation' that occured on February 28, 2025, and provide a solution to it based on the glue job code and the web"
-
-    objective = "how many cloudwtahc logs do we have?"
-
+    objective = "please come up with a solution to the latest glue job error for StockDataTransformation job. Also, compare with solutions from the web to enhance your proposed solution"
     config = {"recursion_limit": 50}
     inputs = {"input": objective}
     app = construct_plan_graph()
@@ -192,14 +211,16 @@ if __name__ == "__main__":
 
     async def main():
         async for event in app.astream(inputs, config=config):
+            response = []
             for k, v in event.items():
                 print("="*100)
-                if k != "__end__":
-                    if "plan" in v:
-                        print("Plan:")
-                        print(v["plan"])
+                print("Step: ", k)
+                print("details: ", v)
+                response.append(v)
+                # if k != "__end__":
+                    
         
-        print("Final response: ", v["response"])
+        print("Final response: ", response)
 
     asyncio.run(main())
     
