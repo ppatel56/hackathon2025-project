@@ -1,0 +1,4 @@
+prompt_1 = please come up with a solution to the latest glue job error for StockDataTransformation job. Also, compare with solutions from the web to enhance your proposed solution
+
+test_prompt_2 = can you explain how to use iceberg tables, and how to make use of them in my StockDataTransformation job. show me the code changes I would have to do
+    

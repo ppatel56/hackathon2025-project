@@ -16,35 +16,44 @@ with st.form(key='query_form'):
 
 # Display the response
 if submit_button and user_input:
-    st.write("Processing your request...")
-    steps_placeholder = st.empty()
-    details_placeholder = st.empty()
+    procesing_placeholder = st.empty()
 
-    final_response_placeholder = st.empty()
-    steps_placeholder.markdown("")  # Highlight the current step
-    details_placeholder.markdown(f"")  # Display the details
+    with st.expander("Final Response"):
+        final_response_placeholder = st.empty()
+
+    # Create an expander for the workflow output
+    with st.expander("Thoughts"):
+        workflow_placeholder = st.empty()
+
+    procesing_placeholder.markdown("Thinking...")  # Highlight the current step
 
     #long running task, with interim update messages to be accumulated in response_placeholder
     async def main():
         config = {"recursion_limit": 50}
         inputs = {"input": user_input}
-        response = []
+        step_trace = ""
         async for event in app.astream(inputs, config=config):
             for k, v in event.items():
                 step = k
-                step_output = v
-                steps_placeholder.markdown(f"### Stage: {step}")  # Highlight the current step
+                print("="*100)
+                print("Step: ", step)
+                sep = "="*70
+                stage = f"### Stage: {step}"
                 if "past_steps" in v:
                     details_item_1 = v["past_steps"][-1][0]
                     details_item_2 = v["past_steps"][-1][1]
-                    details_placeholder.markdown(f"#### Executed Step:\n{details_item_1}\n\n#### Response:\n{details_item_2}")  # Display the details
-        return response,v
+                    details = f"#### Executed Step:\n{details_item_1}\n\n#### Response:\n{details_item_2}"
+                    step_trace += f"{stage}\n\n{details}\n\n{sep}\n\n"
+                if "plan" in v:
+                    plan = v["plan"]
+                    plan_str = "\n".join(f"{i+1}. {step}" for i, step in enumerate(plan))
+                    step_trace += f"{stage}\n\n{plan_str}\n\n{sep}\n\n"
+                workflow_placeholder.markdown(step_trace)
+        return v
 
 
-    response,v = asyncio.run(main())
-    steps_placeholder.markdown("")  # Highlight the current step
-    details_placeholder.markdown(f"") 
-    
+    v = asyncio.run(main())
+    procesing_placeholder.markdown("Processing done!")
     final_response_placeholder.markdown(f"### Final Response:\n{v['response']}")  # Highlight the final response
 
 
