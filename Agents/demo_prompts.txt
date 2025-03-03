@@ -1,0 +1,12 @@
+prompt_1 = Please come up with a solution to the latest glue job error for StockDataTransformation job, and include sample code in your response. Also, based on internal documentation, give me guidance on how to deploy the change.
+
+test_prompt_2 = can you explain how to use iceberg tables, and how to make use of them in my StockDataTransformation job. show me the code changes I would have to do
+
+how many couldwatch logs are available to query?
+
+How many glue jobs are in the cloudwatch logs data?
+
+
+
+
+    
