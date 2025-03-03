@@ -37,7 +37,7 @@ planner_prompt = ChatPromptTemplate.from_messages(
     f"""Objective: Develop a step-by-step plan to solve the given problem using only the following task workers:
 
         Available Task Workers:
-        1. Query_Internal_Docs_and_web: Search internal documentation and web resources for relevant information.
+        1. Query_Internal_Docs_and_web: Can search internal documentation and/or the internet for relevant information.
         2. Query_Cloudwatch: Query sql database containing glu job cloudwatch logs.
         3. Retrieve_App_Code: Fetch the code for the 'StockDataTransformation' Glue job.
 
@@ -84,8 +84,8 @@ class Act(BaseModel):
     """Action to perform."""
 
     action: Union[Response, Plan] = Field(
-        description="Action to perform. If you want to respond to user with proposed solution or answer, use Response. "
-        "Provide your updated plan using Plan, listing only the remaining steps to be executed"
+        description="Action to perform. If you are at final step of the plan and you are ready to provide an analysis of previous step completions with a final answer, use Response. "
+        "Otherwise, provide your updated plan using Plan, listing only the remaining steps to be executed"
     )
 
 
@@ -105,12 +105,14 @@ Completed Steps:
 
 Instructions:
 1. Review the objective, available task workers, original plan, and completed steps.
-2. Create or update the plan using ONLY the specified task workers.
-3. Each step must be actionable and executed by one of the task workers.
-4. Do not include any steps that include task workers that have already been executed.
+2. Update original plan by moving forward from the last completed step.
+3. Only add steps if original plan needs modification or additional steps are required.
+4. Each step must be actionable and executed by one of the task workers.
 5. Do not include any steps that have already been completed.
 6. Ensure the plan leads logically to a final answer or solution.
 7. If you're at the final step, provide the proposed solution based on the completed steps.
+8. The plan can have a step with a repeated task worker (but different specific task) if it's necessary for the final solution
+9. Plan should always include a Final Step
 
 Plan Format:
 Step 1: [Task Worker] - [Specific action and expected outcome]
@@ -118,14 +120,20 @@ Step 2: [Task Worker] - [Specific action and expected outcome]
 ...
 Final Step: [Analysis of previous step completions leading to final answer]
 
-Example Plan:
+Example Plan 1:
 Step 1: Query_Cloudwatch to retrieve the error logs for the Glue job 'StockDataTransformation' on February 28, 2025. 
 Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
 Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
-Step 4: Based on the queried error logs, the queried documentation, and the retirved application code, produce a proposed solution to the application error.
+Final Step: Based on the queried error logs, the queried documentation, and the retirved application code, produce a proposed solution to the application error.
 
+Example Plan 2:
+Step 1: Query_Cloudwatch to retrieve the latest error logs for the Glue job 'StockDataTransformation'.
+Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
+Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
+Step 4: Query_Internal_Docs_and_web to find guidance on how to deploy changes to the Glue job once a fix is identified.
+Final Step: Based on the queried error logs, the queried documentation, and the retrieved application code, produce a proposed solution to the application error, including sample code and deployment guidance.
 
-Note: Ensure each step is necessary and directly contributes to achieving the objective. Avoid superfluous steps or those not utilizing the specified task workers."""
+Note: Ensure each step is necessary and directly contributes to achieving the objective. Avoid superfluous steps or those not utilizing the specified task workers. DO NOT user Response to respond if you are not at the final step of the plan.""",
 )
 
 
