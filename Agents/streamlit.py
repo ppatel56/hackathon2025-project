@@ -48,7 +48,7 @@ st.markdown(
     """
     <style>
     .col2-padding {
-        padding-top: 145px; /* Adjust this value to add more or less padding */
+        padding-top: 250px; /* Adjust this value to add more or less padding */
     }
     </style>
     """,
@@ -67,7 +67,7 @@ with col2:
 
 with col1:
     # Streamlit app
-    st.title("AWS Glue Developer Troubleshooting Agent Chat Interface")
+    st.title("AWS Troubleshooting AI Assistant")
 
     # Input form
     with st.form(key='query_form'):
@@ -92,6 +92,7 @@ with col1:
             config = {"recursion_limit": 50}
             inputs = {"input": user_input}
             step_trace = ""
+            first = True
             async for event in app.astream(inputs, config=config):
                 for k, v in event.items():
                     step = k
@@ -109,7 +110,9 @@ with col1:
                         plan = v["plan"]
                         plan_str = "\n".join(f"{i+1}. {step}" for i, step in enumerate(plan))
                         step_trace = f"{stage}\n\n{plan_str}\n\n{sep}\n\n" + step_trace
-                        time.sleep(2)
+                        if first:
+                            first = False
+                            time.sleep(10)
                     workflow_placeholder.markdown(step_trace, unsafe_allow_html=True)
                     # Update the graph with the current step
                     display_workflow_graph(graph_placeholder, current_step=step)

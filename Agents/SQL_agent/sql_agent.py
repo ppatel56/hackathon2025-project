@@ -162,6 +162,8 @@ query_gen = query_gen_prompt | llm
 
 
 def query_gen_node(state: State):
+    print("query_gen_node")
+    print(state)
     message = query_gen.invoke(state)
     
     return {"messages": [message]}

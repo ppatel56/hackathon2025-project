@@ -36,9 +36,9 @@ planner_prompt = ChatPromptTemplate.from_messages(
             "system",
     f"""Objective: Develop a step-by-step plan to solve the given problem using only the following task workers:
 
-        Available Task Workers:
-        1. Query_Internal_Docs_and_web: Can search internal documentation and/or the internet for relevant information.
-        2. Query_Cloudwatch: Query sql database containing glu job cloudwatch logs.
+       Available Task Workers:
+        1. Query_Internal_Docs_and_web: Query internal documentation vector database or browse the web for information.
+        2. Query_Cloudwatch: Query cloudwatch logs from SQLite database.
         3. Retrieve_App_Code: Fetch the code for the 'StockDataTransformation' Glue job.
 
         Instructions for Plan Creation:
@@ -48,6 +48,8 @@ planner_prompt = ChatPromptTemplate.from_messages(
         4. The plan should progress logically towards a final answer or solution.
         5. The final step should be an analysis of the completed previous steps to complete answer to the objective.
         6. Avoid any steps before final step that do not directly utilize one of the specified task workers.
+        7. The plan can have a step with a repeated task worker (but different specific task) if it's necessary for the final solution
+        8. Plan should always include a Final Step
 
         Plan Format:
         Step 1: [Task Worker] - [Specific action and expected outcome]
@@ -55,11 +57,23 @@ planner_prompt = ChatPromptTemplate.from_messages(
         ...
         Final Step: [Analysis of previous step completions leading to final answer]
 
-        Example Plan:
+        Example Plan 1:
         Step 1: Query_Cloudwatch to retrieve the error logs for the Glue job 'StockDataTransformation' on February 28, 2025. 
         Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
         Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
         Step 4: Based on the queried error logs, the queried documentation, and the retirved application code, produce a proposed solution to the application error.
+
+        Example Plan 2:
+        Step 1: Query_Cloudwatch to retrieve the latest error logs for the Glue job 'StockDataTransformation'.
+        Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
+        Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
+        Step 4: Query_Internal_Docs_and_web to find guidance on how to deploy changes to the Glue job once a fix is identified.
+        Final Step: Based on the queried error logs, the queried documentation, and the retrieved application code, produce a proposed solution to the application error, including sample code and deployment guidance.
+
+        Example Plan 3:
+        Step 1: Query_Cloudwatch to retrieve unique glue job names in cloudwatch data.
+        Final Step: Analyze the retrieved logs to extract the names of all Glue jobs.
+
 
         Remember: Each step should be essential for reaching the solution. Eliminate any superfluous steps that don't contribute directly to achieving the objective."""
         ),
@@ -85,7 +99,7 @@ class Act(BaseModel):
 
     action: Union[Response, Plan] = Field(
         description="Action to perform. If you are at final step of the plan and you are ready to provide an analysis of previous step completions with a final answer, use Response. "
-        "Otherwise, provide your updated plan using Plan, listing only the remaining steps to be executed"
+        "Otherwise, provide your updated plan using Plan, listing only the remaining steps to be executed from original plan"
     )
 
 
@@ -93,8 +107,8 @@ replanner_prompt = ChatPromptTemplate.from_template(
     """Objective: {input}
 
 Available Task Workers:
-1. Query_Internal_Docs_and_web: Query internal documentation and web for information.
-2. Query_Cloudwatch: Retrieve Glue job log information from CloudWatch.
+1. Query_Internal_Docs_and_web: Query internal documentation vector database or browse the web for information.
+2. Query_Cloudwatch: Query cloudwatch logs from SQLite database.
 3. Retrieve_App_Code: Fetch the code for the 'StockDataTransformation' Glue job.
 
 Original Plan:
@@ -110,7 +124,7 @@ Instructions:
 4. Each step must be actionable and executed by one of the task workers.
 5. Do not include any steps that have already been completed.
 6. Ensure the plan leads logically to a final answer or solution.
-7. If you're at the final step, provide the proposed solution based on the completed steps.
+7. If you're at the final step, do not generate an updated plan, provide the proposed solution based on the completed steps.
 8. The plan can have a step with a repeated task worker (but different specific task) if it's necessary for the final solution
 9. Plan should always include a Final Step
 
@@ -120,20 +134,21 @@ Step 2: [Task Worker] - [Specific action and expected outcome]
 ...
 Final Step: [Analysis of previous step completions leading to final answer]
 
-Example Plan 1:
-Step 1: Query_Cloudwatch to retrieve the error logs for the Glue job 'StockDataTransformation' on February 28, 2025. 
+Example Updated Plan 1:
 Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
 Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
 Final Step: Based on the queried error logs, the queried documentation, and the retirved application code, produce a proposed solution to the application error.
 
-Example Plan 2:
-Step 1: Query_Cloudwatch to retrieve the latest error logs for the Glue job 'StockDataTransformation'.
-Step 2: Query_Internal_Docs_and_web to understand the error message retrieved from Cloudwatch logs and find potential solutions or fixes.
+Example Updated Plan 2:
 Step 3: Retrieve_App_Code for the Glue job 'StockDataTransformation' to review the current implementation and identify where the error might be occurring.
 Step 4: Query_Internal_Docs_and_web to find guidance on how to deploy changes to the Glue job once a fix is identified.
 Final Step: Based on the queried error logs, the queried documentation, and the retrieved application code, produce a proposed solution to the application error, including sample code and deployment guidance.
 
-Note: Ensure each step is necessary and directly contributes to achieving the objective. Avoid superfluous steps or those not utilizing the specified task workers. DO NOT user Response to respond if you are not at the final step of the plan.""",
+Example Updated Plan 4:
+Step 4: Query_Internal_Docs_and_web to find guidance on how to deploy changes to the Glue job once a fix is identified.
+Final Step: Based on the queried error logs, the queried documentation, and the retrieved application code, produce a proposed solution to the application error, including sample code and deployment guidance.
+
+Note: Ensure each step is necessary and directly contributes to achieving the objective. Avoid superfluous steps or those not utilizing the specified task workers. DO NOT use Response to respond if you are not at the final step of the plan.""",
 )
 
 
